@@ -5,12 +5,12 @@ const services= require('../Services/furtniture');
 router.get('', (req, res) => {
     services.getAll('getAllFurniture', details)
         .then((results) => {
-            console.log(`All Furniture retrieved:`, results);
+            console.log(`All Furnitures retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving furniture`, err);
-            res.status(404).json({ error: `An error occurred while retrieving furniture` });
+            console.error(`Error retrieving furnitures`, err);
+            res.status(404).json({ error: `An error occurred while retrieving furnitures` });
         });
 });
 
