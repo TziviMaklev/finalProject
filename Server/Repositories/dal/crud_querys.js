@@ -11,28 +11,28 @@ function createQuery(type) {
         case "addCar":
             return sql = `
             INSERT INTO project.cars(user_id,product_details,cost,
-                km,statuse,year_of_production,several_years_in_use,company,product_type)
-            VALUES (?, ? , ? ,? ,? ,? , ? , ? , ?)
+                km,statuse,year_of_production,several_years_in_use,company,product_type , imageFilePath)
+            VALUES (?, ? , ? ,? ,? ,? , ? , ? , ? , ?)
             `;
         case "addFurniture":
             return sql = `
-            INSERT INTO project.furniture(user_id,product_details , cost,product_type ,several_years_in_use,statuse)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO project.furniture(user_id,product_details , cost,product_type ,several_years_in_use,statuse, imageFilePath)
+            VALUES (?, ?, ?, ?, ? ,?)
             `;
         case "addAppliance":
             return sql = `
-            INSERT INTO project.appliances(user_id,product_details , cost,product_type ,several_years_in_use,statuse,model)
-            VALUES (?, ?, ?, ?, ? , ?)
+            INSERT INTO project.appliances(user_id,product_details , cost,product_type ,several_years_in_use,statuse,model,imageFilePath)
+            VALUES (?, ?, ?, ?, ? , ?, ?)
             `;
         case "addAnimal":
             return sql = `
-            INSERT INTO project.animals(user_id,product_details , cost,product_type, age ,health_condition)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO project.animals(user_id,product_details , cost,product_type, age ,health_condition, imageFilePath)
+            VALUES (?, ?, ?, ?, ? , ?)
             `;
         case "addBusinesse":
             return sql = `
-            INSERT INTO project.businesses(user_id,product_details , cost,product_type,several_years_open ,expected_profit_per_year ,place)
-            VALUES (?, ?, ?, ?, ? , ?)
+            INSERT INTO project.businesses(user_id,product_details , cost,product_type,several_years_open ,expected_profit_per_year ,place ,imageFilePath)
+            VALUES (?, ?, ?, ?, ? , ? , ?)
             `;
         case "addAds":
             return sql = `
@@ -196,30 +196,30 @@ function updateQuery(type) {
             return sql = `
             UPDATE cars 
             SET cars.product_details = ?,cars.cost = ?, cars.km = ?, cars.statuse = ? ,
-            cars.year_of_production =  ?, cars.several_years_in_use=?, cars.company =? , cars.product_type =? 
+            cars.year_of_production =  ?, cars.several_years_in_use=?, cars.company =? , cars.product_type =? ,cars.imageFilePath = ? 
             WHERE cars.id = ?`;
         case "updateFurniture":
             return sql = `
             UPDATE furniture 
             SET furniture.product_details = ?,furniture.cost = ?, furniture.product_type = ?, 
-            furniture.several_years_in_use = ? , fortunes.statuse =?
+            furniture.several_years_in_use = ? , fortunes.statuse =? , furniture.imageFilePath = ?
             WHERE furniture.id = ?`;
         case "updateAppliance":
             return sql = `
             UPDATE appliances 
             SET appliances.product_details = ?,appliances.cost = ?, appliances.product_type = ?, appliances.several_years_in_use = ?
-            ,appliances.statuse =? ,appliances.model =?
+            ,appliances.statuse =? ,appliances.model =? , appliances.imageFilePath = ?
             WHERE appliances.id = ?`;
         case "updateAnimal":
             return sql = `
             UPDATE animals 
-            SET animals.product_details = ?,animals.cost = ?, animals.product_type = ?, animals.age = ? , animals.health_condition = ?
+            SET animals.product_details = ?,animals.cost = ?, animals.product_type = ?, animals.age = ? , animals.health_condition = ? , animals.imageFilePath = ?
             WHERE animals.id = ?`;
         case "updateBusinesse":
             return sql = `
             UPDATE businesses 
             SET businesses.product_details = ?,businesses.cost = ?, businesses.product_type = ?, businesses.several_years_open = ?,
-            businesses.expected_profit_per_year =?  ,businesses.place =?  
+            businesses.expected_profit_per_year =?  ,businesses.place =?  , businesses.imageFilePath  = ? 
             WHERE businesses.id = ?`;
         default:
             return;

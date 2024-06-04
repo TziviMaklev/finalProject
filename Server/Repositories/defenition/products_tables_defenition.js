@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS cars (
   several_years_in_use VARCHAR(255) NOT NULL,
   company VARCHAR(255) NOT NULL,
   product_type VARCHAR(255) NOT NULL,
-  dateAdded DATE DEFAULT CURRENT_DATE
-
+  dateAdded DATE DEFAULT CURRENT_DATE,
+  imageFilePath VARCHAR(255)
 );
 `;
 
@@ -24,7 +24,8 @@ CREATE TABLE IF NOT EXISTS  furniture(
   product_type VARCHAR(255) NOT NULL,
   several_years_in_use VARCHAR(255) NOT NULL,
   statuse VARCHAR(255) NOT NULL,
-  dateAdded DATE DEFAULT CURRENT_DATE
+  dateAdded DATE DEFAULT CURRENT_DATE,
+  imageFilePath VARCHAR(255)
 );
 `;
 
@@ -38,8 +39,8 @@ CREATE TABLE IF NOT EXISTS  appliances(
   several_years_in_use VARCHAR(255) NOT NULL,
   statuse VARCHAR(255) NOT NULL,
   model VARCHAR(255) NOT NULL,
-  dateAdded DATE DEFAULT CURRENT_DATE
-
+  dateAdded DATE DEFAULT CURRENT_DATE,
+  imageFilePath VARCHAR(255)
 );
 `;
 
@@ -52,7 +53,8 @@ CREATE TABLE IF NOT EXISTS  animals(
     product_type VARCHAR(255) NOT NULL,
     age VARCHAR(255) NOT NULL,
     health_condition VARCHAR(255) NOT NULL,
-    dateAdded DATE DEFAULT CURRENT_DATE
+    dateAdded DATE DEFAULT CURRENT_DATE,
+    imageFilePath VARCHAR(255)
 );
 
 `;
@@ -67,7 +69,8 @@ CREATE TABLE IF NOT EXISTS  businesses(
     several_years_open VARCHAR(255) NOT NULL,
     expected_profit_per_year VARCHAR(255) NOT NULL,
     place VARCHAR(255) NOT NULL,
-    dateAdded DATE DEFAULT CURRENT_DATE
+    dateAdded DATE DEFAULT CURRENT_DATE,
+    imageFilePath VARCHAR(255)
 );
 `;
 
