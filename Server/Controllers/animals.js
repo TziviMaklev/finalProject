@@ -1,74 +1,74 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/cars');
+const services= require('../Services/animals');
 //ADD
 router.get('', (req, res) => {
-    services.getAll('getAllCars', details)
+    services.getAll('getAllAnimals', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`all animals retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving all animals`, err);
+            res.status(404).json({ error: `An error occurred while retrieving all animals` });
         });
 });
 
-router.get('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.get('/:animalId', (req, res) => {
+    const animalId = req.params.animalId;
     const details = {
-        carId: carId
+        animalId: animalId
     }
-    services.get('getCar', details)
+    services.get('getAnimal', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`animal with id ${animalId} retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving animals with id ${animalId}:`, err);
+            res.status(404).json({ error: `An error occurred while retrieving animal with id ${animalId}` });
         });
 });
 
-router.put('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.put('/:animalId', (req, res) => {
+    const animalId = req.params.animalId;
     const details = {
-        carId: carId,
-        carDetails: req.body
+        animalId: animalId,
+        animalDetails: req.body
     }
-    services.update('updateCar', details)
+    services.update('updateAnimal', details)
         .then((result) => {
-            console.log(`car with ID ${commentId} updated successfully`);
+            console.log(`animal with ID ${animalId} updated successfully`);
             res.status(200).send(result);
         })
         .catch((err) => {
-            console.error('Error updating car:', err);
-            res.status(500).json({ error: 'An error occurred while updating the car' });
+            console.error('Error updating animal:', err);
+            res.status(500).json({ error: 'An error occurred while updating the animal' });
         });
 });
 
 router.post('/', (req, res) => {
     const details = {
-        carDetails: req.body,
+        animalDetails: req.body,
     }
-    services.create("addCar", details)
+    services.create("addAnimal", details)
         .then((result) => {
-            console.log("new car created successfully");
+            console.log("new animal created successfully");
             res.status(200).send(result)
         })
         .catch((err) => {
-            console.error('Error creating new car:', err);
-            res.status(500).json({ error: 'An error occurred while creating a new car' });
+            console.error('Error creating new animal:', err);
+            res.status(500).json({ error: 'An error occurred while creating a new animal' });
         });
 })
 
 
-router.delete('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.delete('/:animalId', (req, res) => {
+    const animalId = req.params.animalId;
     const details = {
-        carId: carId
+        animalId: animalId
     }
-    services.delete_('deleteCar', details)
+    services.delete_('deleteAnimal', details)
         .then((result) => {
             res.status(200).send(result);
         })

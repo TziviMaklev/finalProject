@@ -1,5 +1,4 @@
 function createQuery(type) {
-
     switch (type) {
         case "addUserPassword": `
         INSERT INTO project.passwords ( user_name ,password) 
@@ -20,17 +19,17 @@ function createQuery(type) {
             INSERT INTO project.furniture(user_id,product_details , cost,product_type ,several_years_in_use,statuse)
             VALUES (?, ?, ?, ?, ?)
             `;
-        case "addAppliances":
+        case "addAppliance":
             return sql = `
             INSERT INTO project.appliances(user_id,product_details , cost,product_type ,several_years_in_use,statuse,model)
             VALUES (?, ?, ?, ?, ? , ?)
             `;
-        case "addAnimals":
+        case "addAnimal":
             return sql = `
             INSERT INTO project.animals(user_id,product_details , cost,product_type, age ,health_condition)
             VALUES (?, ?, ?, ?, ?)
             `;
-        case "addBusinesses":
+        case "addBusinesse":
             return sql = `
             INSERT INTO project.businesses(user_id,product_details , cost,product_type,several_years_open ,expected_profit_per_year ,place)
             VALUES (?, ?, ?, ?, ? , ?)
@@ -40,7 +39,7 @@ function createQuery(type) {
             INSERT INTO project.ads(user_id ,product_id ,product_type )
             VALUES (?, ?, ? )
             `;
-        case "addMessages":
+        case "addMessage":
             return sql = `
             INSERT INTO project.messages(messages_id ,user_id ,sender_id ,body )
             VALUES (?, ?, ?  , ?)
@@ -135,19 +134,19 @@ function getQuery(type) {
             FROM furniture
             WHERE furniture.user_id = ? AND furniture.id = ?
             `;
-        case "getAppliances":
+        case "getAppliance":
             return sql = `
             SELECT appliances.*
             FROM appliances
             WHERE appliances.user_id = ? AND appliances.id = ?
             `;
-        case "getAnimals":
+        case "getAnimal":
             return sql = `
             SELECT animals.*
             FROM animals
             WHERE animals.user_id = ? AND animals.id = ?
             `;
-        case "getBusinesses":
+        case "getBusinesse":
             return sql = `
             SELECT businesses.*
             FROM businesses
@@ -161,7 +160,7 @@ function getQuery(type) {
             ON ra.product_id_id = p.id
             WHERE ra.user_id = ? AND ra.product_id=? AND ra.product_type=?
             `;
-        case "getMessages":
+        case "getMessage":
             return sql = `
             SELECT 
             um.messages_id, um.user_id,um.body,ui.name AS sender_name,ui.email AS sender_email,ui.city AS sender_city,
@@ -205,18 +204,18 @@ function updateQuery(type) {
             SET furniture.product_details = ?,furniture.cost = ?, furniture.product_type = ?, 
             furniture.several_years_in_use = ? , fortunes.statuse =?
             WHERE furniture.id = ?`;
-        case "updateAppliances":
+        case "updateAppliance":
             return sql = `
             UPDATE appliances 
             SET appliances.product_details = ?,appliances.cost = ?, appliances.product_type = ?, appliances.several_years_in_use = ?
             ,appliances.statuse =? ,appliances.model =?
             WHERE appliances.id = ?`;
-        case "updateAnimals":
+        case "updateAnimal":
             return sql = `
             UPDATE animals 
             SET animals.product_details = ?,animals.cost = ?, animals.product_type = ?, animals.age = ? , animals.health_condition = ?
             WHERE animals.id = ?`;
-        case "updateBusinesses":
+        case "updateBusinesse":
             return sql = `
             UPDATE businesses 
             SET businesses.product_details = ?,businesses.cost = ?, businesses.product_type = ?, businesses.several_years_open = ?,
@@ -241,25 +240,25 @@ function deleteQuery(type) {
             FROM  furniture
             WHERE furniture.id = ? OR furniture.dateAdded = ? 
             `;
-        case "deleteAppliances":
+        case "deleteAppliance":
             return sql = `
             DELETE 
             FROM  appliances
             WHERE appliances.id = ? OR appliances.dateAdded = ? 
             `;
-        case "deleteAnimals":
+        case "deleteAnimal":
             return sql = `
             DELETE 
             FROM  animals
             WHERE animals.id = ? OR animals.dateAdded = ? 
             `;
-        case "deleteBusinesses":
+        case "deleteBusinesse":
             return sql = `
             DELETE    
             FROM  businesses
             WHERE businesses.id = ? OR businesses.dateAdded = ? 
            `;
-        case "deleteUserMessages":
+        case "deleteUserMessage":
             return sql = `
             DELETE    
             FROM  user_messages
