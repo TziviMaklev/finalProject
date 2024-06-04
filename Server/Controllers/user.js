@@ -3,78 +3,63 @@ const router = express.Router();
 const services= require('../Services/cars');
 //ADD
 router.get('', (req, res) => {
-    services.getAll('getAllCars', details)
+    services.getAll('getAllUsers', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`all users retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving all users`, err);
+            res.status(404).json({ error: `An error occurred while retrieving all users` });
         });
 });
 
-router.get('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.get('/:userId', (req, res) => {
+    const userId = req.params.userId;
     const details = {
-        carId: carId
+        userId: userId
     }
-    services.get('getCar', details)
+    services.get('getUser', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`user with id ${userId} retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving user with id ${userId}:`, err);
+            res.status(404).json({ error: `An error occurred while retrieving user with id ${userId}` });
         });
 });
 
-router.put('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.put('/:userId', (req, res) => {
+    const userId = req.params.userId;
     const details = {
-        carId: carId,
-        carDetails: req.body
+        userId: userId,
+        userDetails: req.body
     }
-    services.update('updateCar', details)
+    services.update('updateUserInfo', details)
         .then((result) => {
-            console.log(`car with ID ${commentId} updated successfully`);
+            console.log(`user with ID ${userId} updated successfully`);
             res.status(200).send(result);
         })
         .catch((err) => {
-            console.error('Error updating car:', err);
-            res.status(500).json({ error: 'An error occurred while updating the car' });
+            console.error('Error updating user:', err);
+            res.status(500).json({ error: 'An error occurred while updating the user' });
         });
 });
 
 router.post('/', (req, res) => {
     const details = {
-        carDetails: req.body,
+        userDetails: req.body,
     }
     services.create("addCar", details)
         .then((result) => {
-            console.log("new car created successfully");
+            console.log("new user created successfully");
             res.status(200).send(result)
         })
         .catch((err) => {
-            console.error('Error creating new car:', err);
-            res.status(500).json({ error: 'An error occurred while creating a new car' });
+            console.error('Error creating new user:', err);
+            res.status(500).json({ error: 'An error occurred while creating a new user' });
         });
 })
-
-
-router.delete('/:carId', (req, res) => {
-    const carId = req.params.carId;
-    const details = {
-        carId: carId
-    }
-    services.delete_('deleteCar', details)
-        .then((result) => {
-            res.status(200).send(result);
-        })
-        .catch((error) => {
-            res.status(500).send(error.message);
-        });
-});
 
 module.exports = router;

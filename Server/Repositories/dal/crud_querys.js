@@ -187,7 +187,7 @@ function updateQuery(type) {
             SET  passwords.password= ? ,passwords.user_name= ? 
             WHERE passwords.user_id = ?
             `;
-        case "updateUserInfo":
+        case "updateUserAllowed":
             return sql = `
             UPDATE user_info 
             SET user_info.allowed = ?
