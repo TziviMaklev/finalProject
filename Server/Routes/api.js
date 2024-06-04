@@ -10,7 +10,7 @@ const userMessagesRouter = require('../Controllers/userMessages');
 const reservedAdsRouter = require('../Controllers/reservedAds');
 
 
-//api
+
 
 const PORT=3000;
 
