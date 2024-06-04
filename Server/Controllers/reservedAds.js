@@ -3,6 +3,11 @@ const router = express.Router();
 const services= require('../Services/reservedAds');
 //ADD
 router.get('', (req, res) => {
+    const userId=req.params.id;
+    console.log(`userId ${userId}`);
+    const details = {
+        userId: userId
+    }
     services.getAll('getAllAds', details)
         .then((results) => {
             console.log(`all ads retrieved:`, results);
@@ -16,8 +21,10 @@ router.get('', (req, res) => {
 
 router.get('/:adsId', (req, res) => {
     const adsId = req.params.carId;
+    const userId=req.params.id;
     const details = {
-        adsId: adsId
+        adsId: adsId,
+        userId: userId
     }
     services.get('getAds', details)
         .then((results) => {
@@ -32,8 +39,10 @@ router.get('/:adsId', (req, res) => {
 
 
 router.post('/', (req, res) => {
+    const userId=req.params.id;
     const details = {
         adsDetails: req.body,
+        userId: userId
     }
     services.create("addAds", details)
         .then((result) => {
@@ -48,9 +57,11 @@ router.post('/', (req, res) => {
 
 
 router.delete('/:adsId', (req, res) => {
-    const carId = req.params.carId;
+    const userId=req.params.id;
+    const adsId = req.params.adsId;
     const details = {
-        adsId: adsId
+        adsId: adsId,
+        userId: userId
     }
     services.delete_('deleteReservedAds', details)
         .then((result) => {

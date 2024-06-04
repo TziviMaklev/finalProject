@@ -3,6 +3,11 @@ const router = express.Router();
 const services= require('../Services/userMessages.js');
 //ADD
 router.get('', (req, res) => {
+    const userId=req.params.id;
+    console.log(`userId ${userId}`);
+    const details = {
+        userId: userId
+    }
     services.getAll('getAllMessages', details)
         .then((results) => {
             console.log(` all messages retrieved:`, results);
@@ -15,9 +20,11 @@ router.get('', (req, res) => {
 });
 
 router.get('/:messageId', (req, res) => {
+    const userId=req.params.id;
     const messageId = req.params.messageId;
     const details = {
-        messageId: messageId
+        messageId: messageId,
+        userId: userId
     }
     services.get('getMessage', details)
         .then((results) => {
@@ -32,8 +39,10 @@ router.get('/:messageId', (req, res) => {
 
 
 router.post('/', (req, res) => {
+    const userId=req.params.id;
     const details = {
         messageDetails: req.body,
+        userId: userId
     }
     services.create("addMessage", details)
         .then((result) => {
@@ -48,9 +57,11 @@ router.post('/', (req, res) => {
 
 
 router.delete('/:messageId', (req, res) => {
+    const userId=req.params.id;
     const messageId = req.params.messageId;
     const details = {
-        messageId: messageId
+        messageId: messageId,
+        userId: userId
     }
     services.delete_('deleteUserMessage', details)
         .then((result) => {
