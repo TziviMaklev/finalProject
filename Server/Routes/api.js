@@ -12,8 +12,6 @@ const signUpRouter = require('../Controllers/signUp');
 const loginRouter = require('../Controllers/login');
 
 
-
-
 const PORT=3000;
 
 const server=express();
