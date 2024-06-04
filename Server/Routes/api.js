@@ -8,6 +8,8 @@ const businessesRouter = require('../Controllers/businesses');
 const usersRouter = require('../Controllers/users');
 const userMessagesRouter = require('../Controllers/userMessages');
 const reservedAdsRouter = require('../Controllers/reservedAds');
+const signUpRouter = require('../Controllers/signUp');
+const loginRouter = require('../Controllers/login');
 
 
 
@@ -33,6 +35,8 @@ server.use('/businesses', businessesRouter);
 server.use('/user', usersRouter);
 server.use('/user/:id/Messages', userMessagesRouter);
 server.use('/user/:id/reservedAds', reservedAdsRouter);
+server.use('/user/login', loginRouter);
+server.use('/user/signUp', signUpRouter);
 
 
 
