@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/furtniture');
+const services= require('../Services/Businesses');
 //ADD
 router.get('', (req, res) => {
     services.getAll('getAllBusinesses', details)

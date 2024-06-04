@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/message');
+const services= require('../Services/userMessages.js');
 //ADD
 router.get('', (req, res) => {
     services.getAll('getAllMessages', details)

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/cars');
+const services= require('../Services/reservedAds');
 //ADD
 router.get('', (req, res) => {
     services.getAll('getAllAds', details)
@@ -17,7 +17,7 @@ router.get('', (req, res) => {
 router.get('/:adsId', (req, res) => {
     const adsId = req.params.carId;
     const details = {
-        carId: carId
+        adsId: adsId
     }
     services.get('getAds', details)
         .then((results) => {
