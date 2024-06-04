@@ -1,78 +1,80 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/cars');
+const services= require('../Services/furtniture');
 //ADD
 router.get('', (req, res) => {
-    services.getAll('getAllCars', details)
+    services.getAll('getAllBusinesses', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`All Businesses retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving Businesses`, err);
+            res.status(404).json({ error: `An error occurred while retrieving Businesses` });
         });
 });
 
-router.get('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.get('/:businessesId', (req, res) => {
+    const businesseId = req.params.businesseId;
     const details = {
-        carId: carId
+        businesseId: businesseId
     }
-    services.get('getCar', details)
+    services.get('getBusinesse', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`Businesse with id ${businesseId} retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving Businesse with id ${businesseId}:`, err);
+            res.status(404).json({ error: `An error occurred while retrieving Businesse with id ${businessesId}` });
         });
 });
 
-router.put('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.put('/:businesseId', (req, res) => {
+    const businesseId = req.params.businesseId;
     const details = {
-        carId: carId,
-        carDetails: req.body
+        businesseId: businesseId,
+        businesseDetails: req.body
     }
-    services.update('updateCar', details)
+    services.update('updateBusinesse', details)
         .then((result) => {
-            console.log(`car with ID ${commentId} updated successfully`);
+            console.log(`Businesse with ID ${businesseId} updated successfully`);
             res.status(200).send(result);
         })
         .catch((err) => {
-            console.error('Error updating car:', err);
-            res.status(500).json({ error: 'An error occurred while updating the car' });
+            console.error('Error updating businesse:', err);
+            res.status(500).json({ error: `An error occurred while updating the businesse with id ${businessesId}` });
         });
 });
 
 router.post('/', (req, res) => {
     const details = {
-        carDetails: req.body,
+        businesseDetails: req.body,
     }
-    services.create("addCar", details)
+    services.create("addBusinesse", details)
         .then((result) => {
-            console.log("new car created successfully");
+            console.log("new businesse created successfully");
             res.status(200).send(result)
         })
         .catch((err) => {
-            console.error('Error creating new car:', err);
-            res.status(500).json({ error: 'An error occurred while creating a new car' });
+            console.error('Error creating new businesses:', err);
+            res.status(500).json({ error: 'An error occurred while creating a new businesse' });
         });
 })
 
 
-router.delete('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.delete('/:businesseId', (req, res) => {
+    const businesseId = req.params.businesseId;
     const details = {
-        carId: carId
+        businesseId: businesseId
     }
-    services.delete_('deleteCar', details)
+    services.delete_('deleteBusinesse', details)
         .then((result) => {
+            console.log(`businesse with ID ${businesseId} deleted successfully`);
             res.status(200).send(result);
         })
         .catch((error) => {
+            console.error(`Error deleted businesse with id ${businesseId}:`, err);
             res.status(500).send(error.message);
         });
 });

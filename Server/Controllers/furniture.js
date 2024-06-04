@@ -1,78 +1,80 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/cars');
+const services= require('../Services/furtniture');
 //ADD
 router.get('', (req, res) => {
-    services.getAll('getAllCars', details)
+    services.getAll('getAllFurniture', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`All Furniture retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving furniture`, err);
+            res.status(404).json({ error: `An error occurred while retrieving furniture` });
         });
 });
 
-router.get('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.get('/:furnitureId', (req, res) => {
+    const furnitureId = req.params.furnitureId;
     const details = {
-        carId: carId
+        furnitureId: furnitureId
     }
-    services.get('getCar', details)
+    services.get('getFurniture', details)
         .then((results) => {
-            console.log(`CAR with id ${id} retrieved:`, results);
+            console.log(`Furniture with id ${furnitureId} retrieved:`, results);
             res.status(200).json(results);
         })
         .catch((err) => {
-            console.error(`Error retrieving car with id ${id}:`, err);
-            res.status(404).json({ error: `An error occurred while retrieving car with id ${id}` });
+            console.error(`Error retrieving Furniture with id ${furnitureId}:`, err);
+            res.status(404).json({ error: `An error occurred while retrieving Furniture with id ${furnitureId}` });
         });
 });
 
-router.put('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.put('/:furnitureId', (req, res) => {
+    const furnitureId = req.params.furnitureId;
     const details = {
-        carId: carId,
-        carDetails: req.body
+        furnitureId: furnitureId,
+        furnitureDetails: req.body
     }
-    services.update('updateCar', details)
+    services.update('updateFurniture', details)
         .then((result) => {
-            console.log(`car with ID ${commentId} updated successfully`);
+            console.log(`furniture with ID ${furnitureId} updated successfully`);
             res.status(200).send(result);
         })
         .catch((err) => {
-            console.error('Error updating car:', err);
-            res.status(500).json({ error: 'An error occurred while updating the car' });
+            console.error('Error updating furniture:', err);
+            res.status(500).json({ error: `An error occurred while updating the furniture with id ${furnitureId}` });
         });
 });
 
 router.post('/', (req, res) => {
     const details = {
-        carDetails: req.body,
+        furnitureDetails: req.body,
     }
-    services.create("addCar", details)
+    services.create("addFurniture", details)
         .then((result) => {
-            console.log("new car created successfully");
+            console.log("new furniture created successfully");
             res.status(200).send(result)
         })
         .catch((err) => {
-            console.error('Error creating new car:', err);
-            res.status(500).json({ error: 'An error occurred while creating a new car' });
+            console.error('Error creating new furniture:', err);
+            res.status(500).json({ error: 'An error occurred while creating a new furniture' });
         });
 })
 
 
-router.delete('/:carId', (req, res) => {
-    const carId = req.params.carId;
+router.delete('/:furnitureId', (req, res) => {
+    const furnitureId = req.params.furnitureId;
     const details = {
-        carId: carId
+        furnitureId: furnitureId
     }
-    services.delete_('deleteCar', details)
+    services.delete_('deleteFurniture', details)
         .then((result) => {
+            console.log(`furniture with ID ${furnitureId} deleted successfully`);
             res.status(200).send(result);
         })
         .catch((error) => {
+            console.error(`Error deleted furniture with id ${furnitureId}:`, err);
             res.status(500).send(error.message);
         });
 });
