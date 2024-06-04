@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/Businesses');
+const services= require('../Services/businesses');
 //ADD
 router.get('', (req, res) => {
     services.getAll('getAllBusinesses', details)
@@ -14,7 +14,7 @@ router.get('', (req, res) => {
         });
 });
 
-router.get('/:businessesId', (req, res) => {
+router.get('/:businesseId', (req, res) => {
     const businesseId = req.params.businesseId;
     const details = {
         businesseId: businesseId
