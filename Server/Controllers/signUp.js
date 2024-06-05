@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const services = require('../Services/signUp');
 
+
 router.post('/', (req, res) => {
     const details = {
         infoDetails: req.query.infoDetails,
