@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/signUp');
+const services = require('../Services/signUp');
 
 router.post('/', (req, res) => {
     const details = {
-        signUpDetails: req.body
+        infoDetails: req.query.infoDetails,
+        passwordDetails: req.body.passwordDetails
     }
     services.create("signUp", details)
         .then((result) => {

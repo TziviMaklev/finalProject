@@ -13,6 +13,6 @@ router.get('', (req, res) => {
         })
         .catch((err) => {
             console.error(`Error with login:`, err);
-            res.status(404).json({ error: `An error occurred while login` });
+            res.status(404).json({ error: `An error occurred while login`});
         });
 });

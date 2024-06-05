@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const services= require('../Services/animals');
-//ADD
+
 router.get('', (req, res) => {
     services.getAll('getAllAnimals', details)
         .then((results) => {
