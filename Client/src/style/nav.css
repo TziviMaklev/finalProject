@@ -1,0 +1,33 @@
+.navDiv {
+   list-style-type: none;
+   display: flex;
+   background-color: grey;
+   padding: 3vh 0 3vh 0;
+   width: 100vw;
+   margin-bottom: 0;
+
+ }
+ .enter {
+   margin-left: 2vw;
+ }
+
+ .exit {
+   margin-left: 30vw;
+ }
+
+ .reservedAds{
+   margin-left: 5vw;
+ }
+ .addItem {
+  margin-left: 5vw;
+}
+.home{
+  margin-right: 20vw;
+  margin-left: 10vw;
+}
+.link{
+  color: azure;
+}
+.link:hover{
+  color:bisque;
+}
