@@ -2,15 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../style/nav.css'
 
-function Nav() {
+function Nav(props) {
+    const status = props.status == "notLayote" ? false  : true;
     console.log("nav");
     return (
         <div className='navDiv'>
-            <Link className='link home'  to="/">בית</Link>
-            <Link className='link reservedAds' to="/reservedAds">מודעות שמורות</Link>
-            <Link className='link addItem' to="/addItem">הוספת פריט</Link>
-            <Link className='link exit' to="/sighUp">הרשמה</Link>
-            <Link className='link enter' to="/login">התחברות</Link>
+            <Link className='link home' exact to="/homePage">בית</Link>
+            {status && <Link className='link reservedAds' exact to="/reservedAds">מודעות שמורות</Link>}
+            {status && <Link className='link addItem' exact to="/addItem">הוספת פריט</Link> }
+            <Link className='link exit'  exact to="/sighUp">הרשמה</Link>
+            <Link className='link enter'exact to="/login">התחברות</Link>
         </div>
     );
 }

@@ -5,9 +5,9 @@ function HomePage() {
     console.log("HomePage");
     return (
         <div>
-            <Nav />
+            <Nav status="layote"/>
+            <h1>HomePage</h1>
         </div>
-
     );
 }
 
