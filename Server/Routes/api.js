@@ -1,4 +1,4 @@
-const express=require('express');
+const express = require('../node_modules/express');
 const cors = require('cors');
 const carsRouter = require('../Controllers/cars');
 const furnitureRouter = require('../Controllers/furniture');
@@ -12,12 +12,12 @@ const signUpRouter = require('../Controllers/signUp');
 const loginRouter = require('../Controllers/login');
 
 
-const PORT=3000;
+const PORT=3306;
 
 const server=express();
 
-server.use(cors({
-    origin: 'http://localhost:5173',
+server.use( cors({
+    origin: 'http://localhost:3306',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
     credentials: true
@@ -25,16 +25,16 @@ server.use(cors({
 
 server.use(express.json());
 
-server.use('/cars', carsRouter);
-server.use('/furniture', furnitureRouter);
-server.use('/appliances', appliancesRouter);
-server.use('/animals', animalsRouter);
-server.use('/businesses', businessesRouter);
-server.use('/user', usersRouter);
-server.use('/user/:id/Messages', userMessagesRouter);
-server.use('/user/:id/reservedAds', reservedAdsRouter);
-server.use('/user/login', loginRouter);
-server.use('/user/signUp', signUpRouter);
+server.use('/api/cars', carsRouter);
+server.use('/api/furniture', furnitureRouter);
+server.use('/api/appliances', appliancesRouter);
+server.use('/api/animals', animalsRouter);
+server.use('/api/businesses', businessesRouter);
+server.use('/api/user', usersRouter);
+server.use('/api/user/:id/Messages', userMessagesRouter);
+server.use('/api/user/:id/reservedAds', reservedAdsRouter);
+server.use('/api/user/login', loginRouter);
+server.use('/api/user/signUp', signUpRouter);
 
 
 

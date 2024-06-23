@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-getAll((type, details) => {
+const getAll  = ((type, details) => {
     const detailsInArr = [...details];
     dal.getAll(type, detailsInArr)
         .then((results) => {
@@ -12,7 +12,7 @@ getAll((type, details) => {
         });
 });
 
-get((type, details) => {
+const get = ((type, details) => {
     const detailsInArr = [...details];
     dal.get(type, detailsInArr)
         .then((results) => {
@@ -23,7 +23,7 @@ get((type, details) => {
         });
 });
 
-put((type, details) => {
+const put = ((type, details) => {
     const detailsInArr = [details.animalId, ...details.animalDetails];
     
     dal.put(type, detailsInArr)
@@ -44,7 +44,7 @@ put((type, details) => {
 
 });
 
-post((type, details) => {
+const post = ((type, details) => {
     const detailsInArr = [...details];
     dal.post(type, detailsInArr)
         .then((results) => {
@@ -65,7 +65,7 @@ post((type, details) => {
 })
 
 
-delete_((type, details) => {
+const delete_ = ((type, details) => {
     const detailsInArr = [...details];
     dal.delete_(type, detailsInArr)
         .then((results) => {

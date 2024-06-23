@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-get((type, details) => {
+const get = ((type, details) => {
     const detailsInArr = [...details];
     dal.get("getUserPassword", detailsInArr)
         .then((results) => {

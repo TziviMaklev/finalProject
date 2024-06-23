@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 
-post((type, details) => {
+const post = ((type, details) => {
     const infoDetailsInArr = [...details.infoDetails];
     const passwordDetailsInArr = [...details.passwordDetails];
     let id;

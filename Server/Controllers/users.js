@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const services= require('../Services/user');
 //ADD
-router.get('', (req, res) => {
+router.get('/', (req, res) => {
     services.getAll('getAllUsers', details)
         .then((results) => {
             console.log(`all users retrieved:`, results);

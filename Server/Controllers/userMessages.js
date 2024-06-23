@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const services= require('../Services/userMessages.js');
+const services= require('../Services/usserMessages');
 //ADD
-router.get('', (req, res) => {
+router.get('/', (req, res) => {
     const userId=req.params.id;
     console.log(`userId ${userId}`);
     const details = {

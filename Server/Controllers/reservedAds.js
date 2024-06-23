@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const services= require('../Services/reservedAds');
 //ADD
-router.get('', (req, res) => {
+router.get('/', (req, res) => {
     const userId=req.params.id;
     console.log(`userId ${userId}`);
     const details = {
