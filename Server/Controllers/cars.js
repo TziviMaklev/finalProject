@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const services= require('../Services/cars');
 //ADD
-router.get('', (req, res) => {
+router.get('/cars', (req, res) => {
     services.getAll('getAllCars', details)
         .then((results) => {
             console.log(`All cars is retrieved:`, results);

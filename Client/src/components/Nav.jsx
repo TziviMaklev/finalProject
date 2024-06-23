@@ -2,16 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../style/nav.css'
 
-function Nav(props) {
-    const status = props.status == "notLayote" ? false  : true;
+function Nav() {
     console.log("nav");
     return (
         <div className='navDiv'>
-            <Link className='link home' exact to="/homePage">בית</Link>
-            {status && <Link className='link reservedAds' exact to="/reservedAds">מודעות שמורות</Link>}
-            {status && <Link className='link addItem' exact to="/addItem">הוספת פריט</Link> }
-            <Link className='link exit'  exact to="/sighUp">הרשמה</Link>
-            <Link className='link enter'exact to="/login">התחברות</Link>
+            <Link className='link home' to="/homePage">בית</Link>
+            {/* <Link className='link reservedAds' to="/reservedAds">מודעות שמורות</Link>
+            <Link className='link addItem' to="/addItem">הוספת פריט</Link> */}
+            <div className='items'>
+                <Link className='link item businesses' exact to="/businesses">עסקים למכירה</Link>
+                <Link className='link item appliances animal' exact to="/animal">חיות</Link>
+                <Link className='link item furniture' exact to="/furniture">רהיטים</Link>
+                <Link className='link item appliances' exact to="/appliances">מוצרי חשמל</Link>
+                <Link className='link item cars' exact to="/cars">מכוניות</Link>
+            </div>
+            <Link className='link sighUp' to="/sighUp">הרשמה</Link>
+            <Link className='link login' to="/login">התחברות</Link>
+
         </div>
     );
 }

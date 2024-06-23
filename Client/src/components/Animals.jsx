@@ -2,15 +2,15 @@ import React from 'react';
 import Nav from './Nav';
 
 
-function Login() {
-    console.log("Login");
+function Animals() {
+    console.log("Animals");
     return (
         <div>
             <Nav></Nav>
-            <h1>Login</h1>
+            <h1>Animals</h1>
         </div>
 
     );
 }
 
-export default Login;
+export default Animals;

@@ -19,7 +19,7 @@ router.get('/:applianceId', (req, res) => {
     const details = {
         applianceId: applianceId
     }
-    services.get('getCar', details)
+    services.get('setAppliance', details)
         .then((results) => {
             console.log(`appliance with id ${applianceId} retrieved:`, results);
             res.status(200).json(results);

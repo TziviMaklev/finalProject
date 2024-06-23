@@ -7,12 +7,13 @@
    margin-bottom: 0;
 
  }
- .enter {
+ .login{
    margin-left: 2vw;
+   
  }
 
- .exit {
-   margin-left: 30vw;
+ .sighUp {
+   margin-left: 15vw;
  }
 
  .reservedAds{
@@ -30,4 +31,13 @@
 }
 .link:hover{
   color:bisque;
+}
+.items{
+  display: flex;
+}
+.item{
+  margin-left: 2vw;
+}
+.cars{
+  margin-right: -10vw;
 }
