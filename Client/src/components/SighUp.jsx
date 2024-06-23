@@ -11,33 +11,32 @@ function SighUp() {
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [city, setCity] = useState('');
+    const [error , setError] = useState('');
     const [verifyPassword, setVerifyPassword] = useState('');
-    let newUser = { "userName": userName, "password": password, "name": name, "email": email, "phone": phone };
+    const newUser = {passwordDetails :{ "userName" : userName, "password" : password },infoDetails : {"name" : name, "email": email,"city" : city , "phone": phone }};
     async function handleSighUp() {
-        const newUser = { name, email, password };
         if (password === verifyPassword) {
             try {
-                const response = await fetch('http://localhost:3306/api/user/signUp', {
+                const response = await fetch('http://localhost:3336/api/signUp', {
                     method: 'POST',
                     body: JSON.stringify(newUser),
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8',
                     },
-                });
-
+                }); 
                 // בדיקה אם התגובה מהשרת אינה תקינה
                 if (!response.ok) {
                     const errorResponse = await response.json();
                     throw new Error(errorResponse.error || 'Network response was not ok');
                 }
-
                 // קריאה לתגובה מהשרת אם התגובה תקינה
                 const data = await response.json();
                 console.log(data);
                 console.log('Sign up successful!');  // הודעת הצלחה
 
             } catch (error) {
-             console.log('Error: ' + error.message);  // הצגת הודעת שגיאה
+                setError(error.message)
+                console.log('Error: sighup ' + error.message);  // הצגת הודעת שגיאה
             }
         } else {
             console.log('Passwords do not match. Please try again.');  // הצגת הודעת שגיאה אם הסיסמאות לא תואמות
@@ -89,6 +88,7 @@ function SighUp() {
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
             />
+            <p>{error}</p>
             <button onClick={handleSighUp}>send</button>
 
         </div>

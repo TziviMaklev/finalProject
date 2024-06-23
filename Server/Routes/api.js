@@ -10,14 +10,11 @@ const userMessagesRouter = require('../Controllers/userMessages');
 const reservedAdsRouter = require('../Controllers/reservedAds');
 const signUpRouter = require('../Controllers/signUp');
 const loginRouter = require('../Controllers/login');
-
-
-const PORT=3306;
-
+const PORT=3336;
 const server=express();
 
 server.use( cors({
-    origin: 'http://localhost:3306',
+    origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
     credentials: true
@@ -34,7 +31,7 @@ server.use('/api/user', usersRouter);
 server.use('/api/user/:id/Messages', userMessagesRouter);
 server.use('/api/user/:id/reservedAds', reservedAdsRouter);
 server.use('/api/user/login', loginRouter);
-server.use('/api/user/signUp', signUpRouter);
+server.use('/api/signUp', signUpRouter);
 
 
 

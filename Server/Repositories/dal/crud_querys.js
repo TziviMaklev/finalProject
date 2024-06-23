@@ -1,10 +1,11 @@
 function createQuery(type) {
     switch (type) {
-        case "addUserPassword": `
+        case "addUserPassword":
+            return sql = `
         INSERT INTO project.passwords ( user_name ,password) 
         VALUES (?, ?);
         `;
-        case "addUserInfo": `
+        case "addUserInfo": return sql = `
             INSERT INTO project.user_info (user_id,name,email,city,phone , allowed) 
             VALUES (?, ?, ?, ?, ?, ${true});
             `;
