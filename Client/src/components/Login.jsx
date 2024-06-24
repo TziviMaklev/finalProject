@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import '../style/login.css'
 
 
 function Login() {
@@ -31,24 +32,27 @@ function Login() {
     return (
         <div>
             <Nav></Nav>
-            <h1 id='titleLogin'>To Login⬇</h1>
-            <input
-                type="text"
-                placeholder="שם משתמש"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="סיסמא"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+            <div class="signup-container">
+                <div class="signup-form">
+                    <h1 id="titleLogin">To Login⬇</h1>
 
-            <button onClick={handleLogIn}>send</button>
-            <p id="loginError">{loginError}</p>
+                    <div class="input-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" class="input-field" placeholder="Enter Username" value={userName} onChange={(e) => setUserName(e.target.value)}></input>
+                    </div>
 
-            <NavLink to="/sighUp">SighUp</NavLink>
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" class="input-field" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                    </div>
+
+                    <button class="submit-btn" onClick={handleLogIn}>Login</button>
+
+                    <p id="loginError" class="error">{loginError}</p>
+
+                    <NavLink to="/signup">Don't have an account? Sign Up here</NavLink>
+                </div>
+            </div>
         </div>
 
     );

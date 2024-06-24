@@ -1,0 +1,151 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    /* Light gray background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Container for the entire login form */
+.signup-container {
+    width: 100%;
+    max-width: 500px;
+    /* Adjust width as needed */
+    background-color: #fff;
+    /* White background for the form */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    padding: 2rem;
+}
+
+/* Styles for the login form itself */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+/* Styles for the title */
+#titleLogin {
+    text-align: center;
+    margin-bottom: 1rem;
+    /* Add some space below the title */
+    font-size: 1.5rem;
+    /* Increase title size */
+    color: #3399ff;
+    /* Bright blue title color */
+}
+
+/* Styles for the input groups */
+.input-group {
+    margin-bottom: 1rem;
+    /* Add some space between input groups */
+    display: flex;
+    /* Make the input group a flex container */
+    align-items: center;
+    /* Center the label and input vertically */
+}
+
+/* Styles for the labels */
+.input-group label {
+    display: inline-block;
+    /* Make the label an inline-block element */
+    margin-right: 1rem;
+    /* Add some space between the label and input */
+    font-weight: bold;
+    /* Make labels bolder */
+    color: #333;
+    /* Darker text color for labels */
+}
+
+/* Styles for the input fields */
+.input-group input {
+    flex: 1;
+    /* Allow the input to expand to fill the remaining space */
+    padding: 0.7rem 1rem;
+    /* Add some padding to the inputs */
+    border: 1px solid #ccc;
+    /* Light border for the inputs */
+    border-radius: 3px;
+    /* Rounded corners for the inputs */
+    font-size: 1rem;
+    /* Consistent font size */
+}
+
+/* Styles for the error message (if any) */
+.error {
+    color: #ff4d4d;
+    /* Red color for error messages */
+    font-weight: bold;
+    /* Make errors stand out */
+    margin-top: 0.5rem;
+    /* Add some space above the error message */
+}
+
+/* Styles for the submit button */
+.submit-btn {
+    background-color: #4caf50;
+    /* Green color for the button */
+    color: white;
+    /* White text for the button */
+    padding: 1rem 2rem;
+    /* Add some padding to the button */
+    border: none;
+    /* Remove default button border */
+    border-radius: 5px;
+    /* Rounded corners for the button */
+    cursor: pointer;
+    /* Make it clear that it's a button */
+    transition: background-color 0.2s ease-in-out;
+    /* Smooth hover effect */
+}
+
+.submit-btn:hover {
+    background-color: #3e8e41;
+    /* Darker green on hover */
+}
+
+/* Styles for the login link */
+.signup-form a {
+    color: #007bff;
+    /* Blue color for the link */
+    text-decoration: none;
+    /* Remove default underline */
+    transition: color 0.2s ease-in-out;
+    /* Smooth hover effect */
+}
+
+.signup-form a:hover {
+    color: #0056b3;
+    /* Darker blue on hover */
+}
+
+/* Responsiveness (media queries) */
+@media (max-width: 768px) {
+    .signup-container {
+        padding: 1rem;
+    }
+
+    .signup-form {
+        max-width: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    .signup-container {
+        padding: 0
+    }
+
+    .submit-btn {
+        /* Existing styles */
+        background-color: #007bff;
+        /* Blue background color */
+    }
+}

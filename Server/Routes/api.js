@@ -10,7 +10,7 @@ const userMessagesRouter = require('../Controllers/userMessages');
 const reservedAdsRouter = require('../Controllers/reservedAds');
 const signUpRouter = require('../Controllers/signUp');
 const loginRouter = require('../Controllers/login');
-const PORT=3336;
+const PORT=3300;
 const server=express();
 
 server.use( cors({
