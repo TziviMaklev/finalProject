@@ -19,6 +19,21 @@ router.get('/:userId', (req, res) => {
     const details = {
         userId: userId
     }
+    services.get('getUserInfo', details)
+        .then((results) => {
+            console.log(`user with id ${userId} retrieved:`, results);
+            res.status(200).json(results);
+        })
+        .catch((err) => {
+            console.error(`Error retrieving user with id ${userId}:`, err);
+            res.status(404).json({ error: `An error occurred while retrieving user with id ${userId}` });
+        });
+});
+router.get('/conecct', (req, res) => {
+    const userId = req.params.userId;
+    const details = {
+        userId: userId
+    }
     services.get('getUser', details)
         .then((results) => {
             console.log(`user with id ${userId} retrieved:`, results);

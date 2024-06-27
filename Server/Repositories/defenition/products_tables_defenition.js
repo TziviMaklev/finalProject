@@ -10,7 +10,6 @@ CREATE TABLE IF NOT EXISTS cars (
   several_years_in_use VARCHAR(255) NOT NULL,
   company VARCHAR(255) NOT NULL,
   product_type VARCHAR(255) NOT NULL,
-  dateAdded DATE DEFAULT CURRENT_DATE,
   imageFilePath VARCHAR(255)
 );
 `;
@@ -39,7 +38,6 @@ CREATE TABLE IF NOT EXISTS  appliances(
   several_years_in_use VARCHAR(255) NOT NULL,
   statuse VARCHAR(255) NOT NULL,
   model VARCHAR(255) NOT NULL,
-  dateAdded DATE DEFAULT CURRENT_DATE,
   imageFilePath VARCHAR(255)
 );
 `;

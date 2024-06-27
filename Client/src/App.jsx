@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route, Link, Navigate ,  } from 'react-router-dom';
 import './App.css'
 import Login from './components/Login.jsx'
 import SighUp from './components/SighUp.jsx'
@@ -20,16 +19,17 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<HomePage />}></Route>
-            <Route path='homePage' element={<HomePage />}></Route>
-            <Route path='login' element={<Login />} />
-            <Route path='sighUp' element={<SighUp />} />
-            <Route path='reservedAds' element={<ReservedAds />} />
-            <Route path='animal' element={<Animals />} />
-            <Route path='furniture' element={<Furniture />} />
-            <Route path='cars' element={<Cars />} />
-            <Route path='businesses' element={<Businesses />} />
-            <Route path='appliances' element={<Appliances />} />
+          <Route path='/' element={<Login />}></Route>
+          <Route path='homePage/:id' element={<HomePage />}>
+          </Route>
+          <Route path='login' element={<Login />} />
+          <Route path='sighUp' element={<SighUp />} />
+          <Route path='reservedAds' element={<ReservedAds />} />
+          <Route path='animal' element={<Animals />} />
+          <Route path='furniture' element={<Furniture />} />
+          <Route path='cars' element={<Cars />} />
+          <Route path='businesses' element={<Businesses />} />
+          <Route path='appliances' element={<Appliances />} />
         </Routes>
       </BrowserRouter>
 

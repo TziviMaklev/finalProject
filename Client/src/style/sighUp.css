@@ -32,7 +32,7 @@ body {
   
   /* Styles for the title */
   #titleSignUp {
-    text-align: center;
+    text-align: left;
     margin-bottom: 1rem; /* Add some space below the title */
     font-size: 1.5rem; /* Increase title size */
     color: #3399ff; /* Bright blue title color */

@@ -27,4 +27,4 @@ async function dropTable(tableName) {
       connection.end(); // Close the connection
     }
   }
-//   dropTable( );
+dropTable("user_info")

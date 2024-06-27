@@ -13,19 +13,19 @@ const pool = mysql.createPool({
 });
 
 //bnpkl
-// pool.getConnection((err, connection) => {
-//     if (err) console.log(err);
-//     connection.query(tables.passwords, (err) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log('passwords table created successfully');
-//             connection.release();
-//             pool.end();
-//         }
-//     });
-// });
+pool.getConnection((err, connection) => {
+    if (err) console.log(err);
+    connection.query(tables.passwords, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('passwords table created successfully');
+            connection.release();
+            pool.end();
+        }
+    });
+});
 
 pool.getConnection((err, connection) => {
     if (err) console.log(err);

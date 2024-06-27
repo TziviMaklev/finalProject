@@ -10,6 +10,8 @@ const userMessagesRouter = require('../Controllers/userMessages');
 const reservedAdsRouter = require('../Controllers/reservedAds');
 const signUpRouter = require('../Controllers/signUp');
 const loginRouter = require('../Controllers/login');
+const conecctUseRouter = require('../Controllers/conecctUse');
+const managerRouter = require('../Controllers/manager');
 const PORT=3300;
 const server=express();
 
@@ -27,10 +29,13 @@ server.use('/api/furniture', furnitureRouter);
 server.use('/api/appliances', appliancesRouter);
 server.use('/api/animals', animalsRouter);
 server.use('/api/businesses', businessesRouter);
+server.use('/api/manager' , managerRouter);
+server.use('/api/application/sendMail'  , conecctUseRouter )
 server.use('/api/user', usersRouter);
-server.use('/api/user/:id/Messages', userMessagesRouter);
+server.use('/api/car/sendMail', conecctUseRouter);
+server.use('/api/user/Messages', userMessagesRouter);
 server.use('/api/user/:id/reservedAds', reservedAdsRouter);
-server.use('/api/user/login', loginRouter);
+server.use('/api/login', loginRouter);
 server.use('/api/signUp', signUpRouter);
 
 

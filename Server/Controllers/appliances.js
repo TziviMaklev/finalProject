@@ -1,187 +1,63 @@
-// const express = require('express');
-// const router = express.Router();
-// const services= require('../Services/appliance');
-// //ADD
-// router.get('/appliance', (req, res) => {
-//     services.getAll('getAllAppliances', details)
-//         .then((results) => {
-//             console.log(`all appliances retrieved:`, results);
-//             res.status(200).json(results);
-//         })
-//         .catch((err) => {
-//             console.error(`Error retrieving all appliances `, err);
-//             res.status(404).json({ error: `An error occurred while retrieving all appliances` });
-//         });
-// });
 
-// router.get('/:applianceId', (req, res) => {
-//     const applianceId = req.params.applianceId;
-//     const details = {
-//         applianceId: applianceId
-//     }
-//     services.get('setAppliance', details)
-//         .then((results) => {
-//             console.log(`appliance with id ${applianceId} retrieved:`, results);
-//             res.status(200).json(results);
-//         })
-//         .catch((err) => {
-//             console.error(`Error retrieving appliance with id ${applianceId}:`, err);
-//             res.status(404).json({ error: `An error occurred while retrieving appliance with id ${appliance}` });
-//         });
-// });
-
-// router.put('/:applianceId', (req, res) => {
-//     const applianceId = req.params.applianceId;
-//     const details = {
-//         applianceId: applianceId,
-//         applianceDetails: req.body
-//     }
-//     services.update('updateCar', details)
-//         .then((result) => {
-//             console.log(`appliance with ID ${applianceId} updated successfully`);
-//             res.status(200).send(result);
-//         })
-//         .catch((err) => {
-//             console.error('Error updating appliance:', err);
-//             res.status(500).json({ error: 'An error occurred while updating the appliance' });
-//         });
-// });
-
-// router.post('/', (req, res) => {
-//     const details = {
-//         applianceDetails: req.body,
-//     }
-//     services.create("addAppliance", details)
-//         .then((result) => {
-//             console.log("new appliance created successfully");
-//             res.status(200).send(result)
-//         })
-//         .catch((err) => {
-//             console.error('Error creating new appliance:', err);
-//             res.status(500).json({ error: 'An error occurred while creating a new appliance' });
-//         });
-// })
-
-
-// router.delete('/:applianceId', (req, res) => {
-//     const applianceId = req.params.applianceId;
-//     const details = {
-//         applianceId: applianceId
-//     }
-//     services.delete_('deleteAppliance', details)
-//         .then((result) => {
-//             res.status(200).send(result);
-//         })
-//         .catch((error) => {
-//             res.status(500).send(error.message);
-//         });
-// });
-
-// module.exports = router;
-
-// const express = require('express');
-// const router = express.Router();
-// const services = require('../Services/appliances'); // שימוש ב-./ לנתיב יחסי באותה תיקייה
-
-// // קבלת כל המכשירים
-// router.get('/appliance', (req, res) => {
-//   services.getAll('getAllAppliances', {}) // פרמטרים ריקים
-//     .then((results) => {
-//       console.log(`כל המכשירים אוחזרו:`, results);
-//       res.status(200).json(results);
-//     })
-//     .catch((err) => {
-//       console.error(`שגיאה באחזור כל המכשירים `, err);
-//       res.status(404).json({ error: `התעוררה שגיאה באחזור כל המכשירים` });
-//     });
-// });
-
-// // קבלת מכשיר לפי מזהה
-// router.get('/:applianceId', (req, res) => {
-//   const applianceId = req.params.applianceId;
-//   const details = {
-//     applianceId: applianceId
-//   };
-
-//   services.get('setAppliance', details)
-//     .then((results) => {
-//       console.log(`מכשיר עם מזהה ${applianceId} אוחזר:`, results);
-//       res.status(200).json(results);
-//     })
-//     .catch((err) => {
-//       console.error(`שגיאה באחזור מכשיר עם מזהה ${applianceId}:`, err);
-//       res.status(404).json({ error: `התעוררה שגיאה באחזור מכשיר עם מזהה ${applianceId}` });
-//     });
-// });
-
-// // עדכון מכשיר
-// router.put('/:applianceId', (req, res) => {
-//   const applianceId = req.params.applianceId;
-//   const details = {
-//     applianceId: applianceId,
-//     applianceDetails: req.body
-//   };
-
-//   services.update('updateCar', details)
-//     .then((result) => {
-//       console.log(`מכשיר עם מזהה ${applianceId} עודכן בהצלחה`);
-//       res.status(200).send(result);
-//     })
-//     .catch((err) => {
-//       console.error('שגיאה בעדכון מכשיר:', err);
-//       res.status(500).json({ error: 'התעוררה שגיאה בעדכון המכשיר' });
-//     });
-// });
-
-// // יצירת מכשיר חדש
-// router.post('/', (req, res) => {
-//   const details = {
-//     applianceDetails: req.body
-//   };
-
-//   services.create('addAppliance', details)
-//     .then((result) => {
-//       console.log('מכשיר חדש נוצר בהצלחה');
-//       res.status(200).send(result);
-//     })
-//     .catch((err) => {
-//       console.error('שגיאה ביצירת מכשיר חדש:', err);
-//       res.status(500).json({ error: 'התעוררה שגיאה ביצירת מכשיר חדש' });
-//     });
-// });
-
-// // מחיקת מכשיר
-// router.delete('/:applianceId', (req, res) => {
-//   const applianceId = req.params.applianceId;
-//   const details = {
-//     applianceId: applianceId
-//   };
-
-//   services.delete_('deleteAppliance', details)
-//     .then((result) => {
-//       res.status(200).send(result);
-//     })
-//     .catch((error) => {
-//       res.status(500).send(error.message);
-//     });
-// });
-
-// module.exports = router;
 
 const express = require('express');
 const router = express.Router();
 const services = require('../Services/appliances');
 
+const fs = require('fs');
+const path = require('path');
+
+const multer = require('multer');
+const upload = multer();
+
+async function uploadApplianceImage(file, idUser, id = null) {
+  try {
+    let newId = id;
+    if (newId === null) {
+      newId = await services.getNextCarId(); // Function to get the next car ID
+    }
+    const newFileName = `appliance${newId}.png`;
+
+    // בדוק אם IMAGES_BASE_PATH מוגדר
+    if (!process.env.IMAGES_BASE_PATH) {
+      throw new Error('Missing environment variable IMAGES_BASE_PATH');
+    }
+
+    const imagesBasePath = process.env.IMAGES_BASE_PATH;
+    const uploadDir = path.join(imagesBasePath, `../images/${idUser}`);
+
+    // נסה ליצור את התיקייה
+    await fs.promises.mkdir(uploadDir, { recursive: true });
+
+    // בדוק אם התיקייה נוצרה בהצלחה
+    try {
+      await fs.promises.access(uploadDir, fs.constants.F_OK);
+    } catch (err) {
+      console.error('Error creating upload directory:', err);
+      throw err; // Re-throw the error for handling
+    }
+
+    const fileBuffer = file.buffer;
+    const filePath = path.join(uploadDir, newFileName);
+
+    await fs.promises.writeFile(filePath, fileBuffer);
+
+    return `../images/${idUser}/appliance${newId}.png`;
+  } catch (error) {
+    console.error('Error uploading product image:', error);
+    throw error; // Re-throw the error for handling
+  }
+}
+
 // GET all appliances
 router.get('/', (req, res) => {
-  services.getAll('getAllAppliances', {})
-    .then((results) => {
-      console.log(`All appliances retrieved:`, results);
+  services.getAll('getAllAppliances', []).then((results) => {
+      console.log(`All appliances is retrieved:`, results);
       res.status(200).json(results);
     })
     .catch((err) => {
-      console.error(`Error retrieving all appliances `, err);
-      res.status(404).json({ error: `An error occurred while retrieving all appliances` });
+      console.error(`Error retrieving appliances:`, err);
+      res.status(404).json({ error: `An error occurred while retrieving appliances` });
     });
 });
 
@@ -192,7 +68,7 @@ router.get('/:applianceId', (req, res) => {
     applianceId: applianceId
   };
 
-  services.get('/setAppliance', details)
+  services.get('/=setAppliance', details)
     .then((results) => {
       console.log(`Appliance with ID ${applianceId} retrieved:`, results);
       res.status(200).json(results);
@@ -207,8 +83,7 @@ router.get('/:applianceId', (req, res) => {
 router.put('/:applianceId', (req, res) => {
   const applianceId = req.params.applianceId;
   const details = {
-    applianceId: applianceId,
-    applianceDetails: req.body
+    applianceId: parseInt(applianceId),
   };
 
   services.update('updateCar', details)
@@ -223,12 +98,14 @@ router.put('/:applianceId', (req, res) => {
 });
 
 // CREATE new appliance
-router.post('/', (req, res) => {
+router.post('/', upload.single("image"), async(req, res) => {
+  const imageNavigte = await uploadApplianceImage(req.file, req.body.user_id);
   const details = {
-    applianceDetails: req.body
+    applianceDetails: req.body ,
+    imageNavigte :imageNavigte
   };
-
-  services.create('addAppliance', details)
+  console.log("details1"  , details);
+  services.post('addAppliance', details)
     .then((result) => {
       console.log('New appliance created successfully');
       res.status(200).send(result);
@@ -243,7 +120,7 @@ router.post('/', (req, res) => {
 router.delete('/:applianceId', (req, res) => {
   const applianceId = req.params.applianceId;
   const details = {
-    applianceId: applianceId
+    applianceId: parseInt(applianceId)
   };
 
   services.delete_('deleteAppliance', details)

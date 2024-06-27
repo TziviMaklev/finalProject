@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const dal = require('../Repositories/dal/crud_functions');
 
 const getAll = ((type, details) => {
     const detailsInArr = [...details];
@@ -13,8 +14,8 @@ const getAll = ((type, details) => {
 });
 
 const get  =((type, details) => {
-    const detailsInArr = [...details];
-    dal.get(type, detailsInArr)
+    const detailsInArr = Object.values(details);
+    return dal.get(type, detailsInArr)
         .then((results) => {
             return results
         })
@@ -76,4 +77,4 @@ const delete_ = ((type, details) => {
         });
 });
 
-module.exports = router;
+module.exports = {delete_ , post , put ,get , getAll};

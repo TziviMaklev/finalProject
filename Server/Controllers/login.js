@@ -2,12 +2,9 @@ const express = require('express');
 const router = express.Router();
 const services = require('../Services/login');
 
-router.get('/', (req, res) => {
-  const details = {
-    loginDetails: req.body
-  };
-
-  services.get('login', details) // Replace 'get' with the actual function name in login.js
+router.post('/', (req, res) => {
+  console.log(req.body);
+  services.post('login',req.body ) // Replace 'get' with the actual function name in login.js
     .then((results) => {
       console.log(`Login successful`, results);
       res.status(200).json(results);

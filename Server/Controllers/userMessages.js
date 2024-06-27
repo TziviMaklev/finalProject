@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const services= require('../Services/usserMessages');
 //ADD
-router.get('/', (req, res) => {
-    const userId=req.params.id;
+router.get('/:id', (req, res) => {
+    const userId=parseInt(req.params.id);
     console.log(`userId ${userId}`);
     const details = {
-        userId: userId
+        userId: userId,
     }
     services.getAll('getAllMessages', details)
         .then((results) => {

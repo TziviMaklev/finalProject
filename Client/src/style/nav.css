@@ -2,8 +2,8 @@
    list-style-type: none;
    display: flex;
    background-color: grey;
-   padding: 3vh 0 3vh 0;
-   width: 100vw;
+   padding: 4vh 0 4vh 0;
+   width: 98.5vw;
    margin-bottom: 0;
 
  }
@@ -40,4 +40,7 @@
 }
 .cars{
   margin-right: -10vw;
+}
+.businesses{
+  margin-left: 40vw;
 }

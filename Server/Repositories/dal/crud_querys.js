@@ -6,15 +6,18 @@ function createQuery(type) {
         VALUES (?, ?);
         `;
         case "addUserInfo": return sql = `
-            INSERT INTO project.user_info (user_id,name,email,city,phone , allowed) 
-            VALUES (?, ?, ?, ?, ?, ${true});
+            INSERT INTO project.user_info (user_id,name,email,city,phone , allowed ,  manger) 
+            VALUES (?, ?, ?, ?, ?, ${true}  , ${false});
+            `;
+        case "addManegerInfo": return sql = `
+            INSERT INTO project.user_info (user_id,name,email,city,phone , allowed ,  manger) 
+            VALUES (?, ?, ?, ?, ?, ${true}  , ${true});
             `;
         case "addCar":
             return sql = `
             INSERT INTO project.cars(user_id,product_details,cost,
-                km,statuse,year_of_production,several_years_in_use,company,product_type , imageFilePath)
-            VALUES (?, ? , ? ,? ,? ,? , ? , ? , ? , ?)
-            `;
+                km,statuse,year_of_production,several_years_in_use,company,product_type  , imageFilePath )
+            VALUES (?, ? , ? ,? ,? ,? , ? , ? ,? , ? )`;
         case "addFurniture":
             return sql = `
             INSERT INTO project.furniture(user_id,product_details , cost,product_type ,several_years_in_use,statuse, imageFilePath)
@@ -22,8 +25,8 @@ function createQuery(type) {
             `;
         case "addAppliance":
             return sql = `
-            INSERT INTO project.appliances(user_id,product_details , cost,product_type ,several_years_in_use,statuse,model,imageFilePath)
-            VALUES (?, ?, ?, ?, ? , ?, ?)
+            INSERT INTO project.appliances(user_id,product_details , cost,product_type ,several_years_in_use,statuse,model , imageFilePath)
+            VALUES (?, ?, ?, "appliance", ? , ? , ?  , ?)
             `;
         case "addAnimal":
             return sql = `
@@ -42,8 +45,12 @@ function createQuery(type) {
             `;
         case "addMessage":
             return sql = `
-            INSERT INTO project.messages(messages_id ,user_id ,sender_id ,body )
-            VALUES (?, ?, ?  , ?)
+            INSERT INTO project.user_messages(user_id ,sender_id ,body )
+            VALUES ( ?, ?  , ?)
+            `;
+        case "addManager": return sql = `
+            INSERT INTO project.manager (id) 
+            VALUES (?);
             `;
         default:
             return;
@@ -61,7 +68,6 @@ function getAllQuery(type) {
             return sql = `
             SELECT cars.*
             FROM cars
-            WHERE cars.user_id = ?
             `;
         case "getAllFurniture":
             return sql = `
@@ -73,7 +79,6 @@ function getAllQuery(type) {
             return sql = `
             SELECT appliances.*
             FROM appliances
-            WHERE appliances.user_id = ?
             `;
         case "getAllAnimals":
             return sql = `
@@ -97,12 +102,9 @@ function getAllQuery(type) {
             `;
         case "getAllMessages":
             return sql = `
-            SELECT 
-            um.messages_id, um.user_id,um.body,ui.name AS sender_name,ui.email AS sender_email,ui.city AS sender_city,
-            ui.phone AS sender_phone,
-            FROM user_messages um JOIN user_info ui 
-            ON um.sender_id = ui.user_id
-            WHERE um.user_id = ? 
+            SELECT *
+            FROM user_messages
+            WHERE user_id = ?
             `;
         default:
             return;
@@ -115,8 +117,7 @@ function getQuery(type) {
             return sql = `
             SELECT passwords.user_id
             FROM passwords
-            WHERE passwords.user_name = ? AND passwords.password=? 
-            `;
+            WHERE passwords.user_name = ? AND passwords.password= ? `;
         case "getUserInfo":
             return sql = `
             SELECT user_info.*
@@ -169,6 +170,30 @@ function getQuery(type) {
             FROM user_messages um JOIN user_info ui 
             ON um.sender_id = ui.user_id
             WHERE um.user_id = ? AND um.messege = ?
+            `;
+        case "getNextCarId":
+            return sql = `
+             SELECT LAST_INSERT_ID() +  1
+            `;
+        case "getNextFurnitureId":
+            return sql = `
+            SELECT MAX(furniture.id) +1
+            FROM furniture
+            `;
+        case "getNextApplianceId":
+            return sql = `
+            SELECT MAX(appliances.id) +1
+            FROM appliances
+            `;
+        case "getNextAnimalId":
+            return sql = `
+            SELECT MAX(animals.id) +1
+            FROM animals
+            `;
+        case "getNextBusinessId":
+            return sql = `
+            SELECT MAX(businesses.id) +1
+            FROM businesses
             `;
         default:
             return;
@@ -233,7 +258,7 @@ function deleteQuery(type) {
             return sql = `
             DELETE 
             FROM  cars
-            WHERE cars.id = ? OR ads.dateAdded = ? 
+            WHERE cars.id = ? 
             `;
         case "deleteFurniture":
             return sql = `
@@ -245,7 +270,7 @@ function deleteQuery(type) {
             return sql = `
             DELETE 
             FROM  appliances
-            WHERE appliances.id = ? OR appliances.dateAdded = ? 
+            WHERE appliances.id = ?
             `;
         case "deleteAnimal":
             return sql = `

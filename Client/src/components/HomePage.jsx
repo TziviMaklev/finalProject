@@ -1,14 +1,14 @@
-import React from 'react';
 import Nav from './Nav';
+import Cars from './Cars';
 
-function HomePage() {
-    console.log("HomePage");
+// HomePage.jsx
+function HomePage() { // Receive layout prop
+    // ... component logic
+
     return (
-        <div>
-            <Nav />
-            <h1>HomePage</h1>
-        </div>
+        <>
+            <Cars></Cars>
+        </>
     );
 }
-
 export default HomePage;

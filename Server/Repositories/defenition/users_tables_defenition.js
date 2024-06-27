@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS user_info (
   email VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   phone VARCHAR(255) NOT NULL,
-  allowed BOOL NOT NULL
+  allowed BOOL NOT NULL , 
+  manger BOOL NOT NULL 
 );
 `;
 
@@ -34,12 +35,18 @@ CREATE TABLE IF NOT EXISTS  user_messages(
   body longtext NOT NULL
 );
 `;
+const  manager= `
+CREATE TABLE IF NOT EXISTS  manager(
+  user_id INT NOT NULL PRIMARY KEY
+);
+`;
 
 const tables = {
     passwords,
     user_info,
     reserved_ads,
-    user_messages
+    user_messages , 
+    manager
 };
 
 module.exports = tables;

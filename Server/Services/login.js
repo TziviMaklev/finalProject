@@ -1,26 +1,30 @@
 const express = require('express');
 const router = express.Router();
+const dal = require('../Repositories/dal/crud_functions');
 
-
-const get = ((type, details) => {
-    const detailsInArr = [...details];
-    dal.get("getUserPassword", detailsInArr)
+function post(type, details) {
+    console.log("type");
+    const detailsInArr = Object.values(details);
+    return dal.get("getUserPassword", detailsInArr)
         .then((results) => {
-            //בדיקת תקינות
-            dal.get("getUserInfo", detailsInArr)
-            .then((results) => {
-                return results
-            })
-            .catch((err) => {
-                return err;
-            });
+            console.log("results1", results[0][0].user_id);
+            
+            
+            // console.log("use" , use);
+            return dal.get("getUserInfo", [results[0][0].user_id]);
         })
-        .catch((err) => {
-            return err;
-        });
-      
-});
+        .then((user) => 
+            {
+                console.log('user3'  , user);
+                return user[0][0]
+            })
+        .catch((error) => {
+            console.error(error);
+            throw new Error("rtyui");
+        })
+
+};
 
 
 
-module.exports = router;
+module.exports = { post };
