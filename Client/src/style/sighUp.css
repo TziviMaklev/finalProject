@@ -69,8 +69,9 @@ body {
   
   /* Styles for the submit button */
   .submit-btn {
-    background-color: #4caf50; /* Green color for the button */
+    background-color: #FFC517; /* Green color for the button */
     color: white; /* White text for the button */
+    font-weight: bold;
     padding: 1rem 2rem; /* Add some padding to the button */
     border: none; /* Remove default button border */
     border-radius: 5px; /* Rounded corners for the button */
@@ -79,7 +80,10 @@ body {
   }
   
   .submit-btn:hover {
-    background-color: #3e8e41; /* Darker green on hover */
+    background-color: #ebe6d8; /* Darker green on hover */
+    border:solid 3px #FFC517;
+    color: #FFC517;
+    font-weight: bold;
   }
   
   /* Styles for the login link */

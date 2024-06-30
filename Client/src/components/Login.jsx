@@ -49,6 +49,7 @@ function Login() {
 
     return (
         <>
+        <div className='background'>
             {/* <Nav className="nav" /> */}
             <div className="signup-container">
                 <div className="signup-form">
@@ -70,6 +71,7 @@ function Login() {
 
                     <NavLink to="/sighUp">Don't have an account? Sign Up here</NavLink>
                 </div>
+            </div>
             </div>
         </>
 
