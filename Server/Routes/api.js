@@ -12,6 +12,7 @@ const signUpRouter = require('../Controllers/signUp');
 const loginRouter = require('../Controllers/login');
 const conecctUseRouter = require('../Controllers/conecctUse');
 const managerRouter = require('../Controllers/manager');
+const companiesRouter = require('../Controllers/companies');
 const PORT=3300;
 const server=express();
 
@@ -37,7 +38,7 @@ server.use('/api/user/Messages', userMessagesRouter);
 server.use('/api/user/:id/reservedAds', reservedAdsRouter);
 server.use('/api/login', loginRouter);
 server.use('/api/signUp', signUpRouter);
-
+server.use('/api/companies', companiesRouter);
 
 
 server.listen(PORT, () => {

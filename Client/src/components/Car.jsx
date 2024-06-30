@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-
+import watchap from "../images/whatsapp-icon.webp"
+import CarInpute from './CarInpute';
 
 function Car(props) {
   const car = props.car;
   const [showSailerDaetails, setShowSailerDaetails] = useState(false);
   const [sailerDaetails, setSailerDaetails] = useState({});
   const [currentUser, setCurrentUser] = useState('');
+  const [updateDiv, setUpdateDiv] =useState(false);
   useEffect(() => {
     if (JSON.parse(sessionStorage.getItem('currentUser')) != undefined) {
       setCurrentUser(JSON.parse(sessionStorage.getItem('currentUser')));
@@ -69,38 +71,69 @@ function Car(props) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || 'Network response was not ok');
       }
+      else {
+        const data = await response.json();
+        console.log(data);
+        props.setCarArr(data);
+        props.setSortArr(data);
+      }
+
+
       console.log('appliance deleted');
     } catch (e) {
       console.log(e);
     }
 
   }
+
+  function openImage() {
+    try {
+      // Validate appliance.imageData format
+      if (!/^data:image\/png;base64,.*/.test(appliance.imageData)) {
+        throw new Error("Invalid data URL format for image. Expected data:image/png;base64,[Base64 encoded image data]");
+      }
+
+      // Open the new tab
+      const newTab = window.open('', '_blank');
+
+      // Check if the tab is successfully opened (security measure)
+      if (!newTab) {
+        throw new Error("Failed to open new tab. Pop-up blockers might be enabled.");
+      }
+
+      // Set the new tab's location to the data URL
+      newTab.location.href = appliance.imageData;
+    } catch (error) {
+      console.error("Error opening image:", error.message);
+      // Optionally display an error message to the user
+      alert("There was an error opening the image. Please try again later.");
+    }
+  }
   console.log("Businesses");
   return (
     <div>
       <div className="car-item">
+      <img src={`data:image/png;base64,${car.imageData}`} alt="car" className='image' onClick={openImage} />
         <div className="car-details">
-          {/* <p className="car-property">Product Details: {car.product_details}</p> */}
           <p className="car-property">Cost: {car.cost}</p>
           <p className="car-property">KM: {car.km}</p>
-          {/* <p className="car-property">Years in Use: {car.several_years_in_use}</p> */}
           <p className="car-property">Status: {car.statuse}</p>
-          {/* <p className="car-property">Year of Production: {car.year_of_production}</p> */}
-          <img src={`data:image/png;base64,${car.imageData}`} alt="Apartment" className='image' />
+          <button onClick={() => { showSellDetail(car.user_id) }}>ראה פרטי מוכר</button>
         </div>
-        <button onClick={() => { showSellDetail(car.user_id) }}>ראה פרטי מוכר</button>
-        <button onClick={() => conecctUse(car.user_id, currentUser)} className="contact-button"> ליצירת קשר</button>
         <hr className="car-divider" />
-      </div>
-      {showSailerDaetails && <div>
+        <button>
+        <img onClick={() => conecctUse(car.user_id, currentUser)} src={watchap} width={30} height={30}></img>
+        </button>
+        {(currentUser.user_id == car.user_id || currentUser.manger == true) && < button onClick={() => deletCar(car.id)}>🚮</button>}
+        {currentUser.user_id == car.user_id && <button type='submit' onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
+        {  updateDiv && <CarInpute companies={props.companies} state={"update"} id={car.id} setShowDiv ={setUpdateDiv}/>}
+        <hr className="car-divider" />
+        {showSailerDaetails && <div>
           <p>{sailerDaetails.name}</p>
           <p>{sailerDaetails.email}</p>
           <p>{sailerDaetails.phone}</p>
         </div>}
-      {(currentUser.user_id == car.user_id || currentUser.manger == true) &&< button onClick={() => deletCar(car.id)}>🚮</button>}
-      {currentUser.user_id == car.user_id && <button onClick={()=>console.log("upDate")}>✏️</button>}
-      {/* {currentUser.manger == true && <>yugio;</>} */}
-
+      </div>
     </div >
 
   );

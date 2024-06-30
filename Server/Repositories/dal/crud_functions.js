@@ -19,7 +19,8 @@ async function getNextId(type) {
     const connection = mysql.createConnection(pool).promise();
     try {
         const result = await connection.query(sql);
-        const nextId = result[0].next_id || 1;
+        console.log("nextID", result[0][0].max_id + 1);
+        const nextId = result[0][0].max_id + 1;
         return nextId;
     }
     catch (error) {
@@ -106,15 +107,25 @@ async function get(type, details) {
 // Update
 async function update(type, details) {
     const sql = crudQuery.updateQuery(type);
-    const arr = arrDetailsToQuery.getDetailsInArr(type, details);
+    const connection = mysql.createConnection(pool).promise();
+    let result
     try {
-        const connection = pool.getConnection();
-        const result = await connection.query(sql, arr);
-        connection.release();
-        pool.end();
+        result = await connection.query(sql, details,
+            (err, result) => {
+                if (err)
+                    throw err;
+                else {
+                    console.log(`Number of rows affected: ${result.affectedRows}`);
+                    return result;
+                }
+            }
+        );
+        console.log("result", result);
         return result;
     } catch (error) {
         throw new Error(error);
+    } finally {
+        connection.end();
     }
 };
 

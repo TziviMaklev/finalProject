@@ -15,14 +15,14 @@ async function convertUrlToImageFile(url) {
 
 const getNextCarId = async () => {
     const id = await dal.getNextId("getNextCarId");
-    return id;
+    return id + 1;
 }
 
 
 
 const getAll = ((type, details) => {
     return dal.getAll(type, [])
-        .then(async(results) => {
+        .then(async (results) => {
             const enrichedResults = results[0].map(async (result) => {
                 console.log(result.imageFilePath);
                 const imagePath = path.resolve(__dirname, result.imageFilePath);
@@ -75,11 +75,11 @@ const put = ((type, details) => {
 const post = ((type, details) => {
     // console.log("details:" + details.applianceDetails);
     const detailsInArr = Object.values(details.applianceDetails);
-    detailsInArr.push( details.imageNavigte)
+    detailsInArr.push(details.imageNavigte)
     return dal.create(type, detailsInArr)
         .then((results) => {
             console.log(results);
-            const img =  convertUrlToImageFile(details.imageNavigte);
+            const img = convertUrlToImageFile(details.imageNavigte);
             return { ...applianceWithoutImg, img: img };
         })
         .catch((err) => {
@@ -94,8 +94,18 @@ const delete_ = ((type, details) => {
     const detailsInArr = [details.applianceId];
     console.log(detailsInArr);
     return dal.delete_(type, detailsInArr)
-        .then((results) => {
-            return results
+        .then(() => {
+            return dal.getAll("getAllAppliances", [])
+        })
+        .then(async (results) => {
+            const enrichedResults = results[0].map(async (result) => {
+                const imagePath = path.resolve(__dirname, result.imageFilePath);
+                const imageData = await fs.promises.readFile(imagePath);
+                const imageBase64 = Buffer.from(imageData).toString('base64');
+                return { ...result, imageData: imageBase64 };
+            });
+            const finalResults = await Promise.all(enrichedResults);
+            return finalResults;
         })
         .catch((err) => {
             return err;

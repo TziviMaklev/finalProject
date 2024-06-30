@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../style/nav.css'
 
 
 function AddManeger(props) {
@@ -55,7 +56,7 @@ function AddManeger(props) {
 
     return (
         <div>
-            {showSighUp && <form class="signup-form" onSubmit={handleSighUp}>
+            {showSighUp && <form class="signup-form" onSubmit={handleSighUp} className="add-manager-form"  >
                 <h1 id="titleSignUp">add manager</h1>
 
                 <div class="input-group">

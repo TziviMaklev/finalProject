@@ -1,0 +1,9 @@
+.sortMenu {
+    display: flex;
+    margin-top: -10vh;
+    margin-left: 10vw;
+}
+
+.sortType {
+    margin-left: 10vw;
+}

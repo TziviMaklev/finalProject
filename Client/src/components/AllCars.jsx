@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import '../style/allCars.css'
 import Car from './Car';
+import Sort from './Sort';
 
-function AllCars() {
+function AllCars(props) {
   const [carArr, setCarArr] = useState([]);
+  const [sortArr, setSortArr] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -20,6 +22,7 @@ function AllCars() {
         const data = await response.json();
         console.log(data);
         setCarArr(data);
+        setSortArr(data)
       } catch (e) {
         console.log(e);
       }
@@ -28,13 +31,16 @@ function AllCars() {
   }, []);
 
 
-return (
-  <div className="car-list">
-    {carArr.map((car) => (
-      <Car key={car.id} car={car}/>
-    ))}
-  </div>
-);
+  return (
+    <>
+      <Sort  arr={carArr}  setArr={setSortArr} companies={props.companies} status={'car'}></Sort>
+      <div className="car-list">
+        {sortArr.map((car) => (
+          <Car key={car.id} car={car}  setCarArr={setCarArr}  setSortArr={setSortArr} companies={props.companies} carDetails={car}/>
+        ))}
+      </div>
+    </>
+  );
 }
 
 export default AllCars;

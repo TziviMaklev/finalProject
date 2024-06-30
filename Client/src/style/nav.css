@@ -1,46 +1,115 @@
+
+
 .navDiv {
-   list-style-type: none;
-   display: flex;
-   background-color: grey;
-   padding: 4vh 0 4vh 0;
-   width: 98.5vw;
-   margin-bottom: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* צל רך משופר */
+  padding: 20px; /* ריווח פנימי מוגדל */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10; /* ודא שה-NAV נמצא מעל כל תוכן אחר */
+}
 
- }
- .login{
-   margin-left: 2vw;
-   
- }
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
 
- .sighUp {
-   margin-left: 15vw;
- }
+.navbar-container img {
+  width: 50px; /* התאמה אופציונלית */
+  height: 50px; /* התאמה אופציונלית */
+  border-radius: 50%; /* תמונה עגולה */
+  margin-right: 20px; /* מרווח מוגדל */
+}
 
- .reservedAds{
-   margin-left: 5vw;
- }
- .addItem {
-  margin-left: 5vw;
+.username-placeholder {
+  font-size: 20px; /* גודל גופן מוגדל */
+  font-weight: bold;
+  margin-right: 20px; /* מרווח מוגדל */
 }
-.home{
-  margin-right: 20vw;
-  margin-left: 10vw;
-}
-.link{
-  color: azure;
-}
-.link:hover{
-  color:bisque;
-}
-.items{
+
+.items {
   display: flex;
 }
-.item{
-  margin-left: 2vw;
+
+.link {
+  display: inline-block;
+  margin-right: 20px; /* מרווח מוגדל */
+  text-decoration: none;
+  color: #333;
+  font-size: 18px; /* גודל גופן מוגדל */
+  transition: color 0.3s ease; /* אפקט מעבר רך */
 }
-.cars{
-  margin-right: -10vw;
+
+.link:hover {
+  color: #007bff; /* צבע טקסט בעת ריחוף */
 }
-.businesses{
-  margin-left: 40vw;
+
+.sighUp {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px; /* ריווח פנימי מוגדל */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* אפקט מעבר רך */
+}
+
+.sighUp:hover {
+  background-color: #0056b3; /* צבע רקע בעת ריחוף */
+}
+
+/* כפתור מנהל */
+
+.addManeger {
+  background-color: #007bff;
+
+  color: #fff;
+  border: none;
+  padding: 12px 20px; /* ריווח פנימי מוגדל */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5vw;
+  transition: background-color 0.3s ease; /* אפקט מעבר רך */
+}
+
+.addManeger:hover {
+  background-color: #0056b3; /* צבע רקע בעת ריחוף */
+}
+
+/* סגנון רכיבים נוספים */
+
+.AllUserMassege,
+.AddManeger {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* צל רך משופר */
+  padding: 20px; /* ריווח פנימי מוגדל */
+  z-index: 11; /* ודא שהרכיבים נמצאים מעל ה-NAV */
+  display: none; /* הסתר כברירת מחדל */
+}
+
+.AllUserMassege.show,
+.AddManeger.show {
+  display: block; /* הצג את הרכיב בעת הפעלת מצב "הצג" */
+}
+
+.add-manager-form {
+  display: flex;
+  flex-direction: column;
+margin-left: 30vw;
+  position: absolute;
+  width: 30vw; /* Adjusted width */
+  background-color: #fff; /* White background for form */
+  padding: 20px;
+  margin-top: 100px;
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
