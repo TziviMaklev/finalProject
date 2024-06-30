@@ -1,12 +1,13 @@
 import React from 'react';
 import Nav from './Nav';
 import AllAppliances from './AllAppliances';
-
-import { useState, useEffect } from 'react';
 import '../style/product.css'
+import '../style/appliancs.css'
+import { useState, useEffect } from 'react';
 
 function Appliances() {
     console.log("Appliances");
+    const [companies, setCompanies] = useState([]);
     const [addAppliancesDiv, setAppliancesDiv] = useState(false);
     const [productDetails, setProductDetails] = useState('');
     const [cost, setCost] = useState('');
@@ -20,9 +21,35 @@ function Appliances() {
             setCurrentUser(JSON.stringify(JSON.parse(sessionStorage.getItem('currentUser')).user_id));
         }
     }, []);
+    useEffect(() => {
+        // קוד לאחזור נתוני חברות רכב מה-DB
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:3300/api/companies/appliance', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8',
+                    },
+                });
+                if (!response.ok) {
+                    const errorResponse = await response.json();
+                    throw new Error(errorResponse.error || 'Network response was not ok');
+                }
+                else {
+                    const data = await response.json();
+                    console.log(data);
+                    setCompanies(data[0]);
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     async function addAppliances(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const fileData = new FormData();
         fileData.append('image', selectedImage);
         fileData.append('user_id', `${currentUser}`);
@@ -86,6 +113,7 @@ function Appliances() {
                             placeholder="Enter cost"
                             value={cost}
                             onChange={(e) => setCost(e.target.value)}
+                            pattern="[0-9]+" // מותיר רק מספרים (כולל 0)
                         />
                         <input
                             type="text"
@@ -93,6 +121,8 @@ function Appliances() {
                             placeholder="Several Years in Use"
                             value={severalYearsInUse}
                             onChange={(e) => setSeveralYearsInUse(e.target.value)}
+                            pattern="[0-9]+" // מותיר רק מספרים (כולל 0)
+
                         />
                         <input
                             type="text"
@@ -101,19 +131,17 @@ function Appliances() {
                             value={statuse}
                             onChange={(e) => setStatuse(e.target.value)}
                         />
-                        <input
-                            type="text"
-                            id="model"
-                            placeholder="Model"
-                            value={model}
-                            onChange={(e) => setmodel(e.target.value)}
-                        />
+                        <select className='selectCompany' id="company"  value={model} onChange={(e) => setmodel(e.target.value)}>
+                            {companies.map((company) => (
+                                <option key={company.id}>{company.company}</option>
+                            ))}
+                        </select>
                         <input id="file-upload" type="file" accept="image/jpeg, image/png, image/gif" onChange={handleFileChange} />
                         <button className="submit-car-btn" type='submit'>Submit Appliance</button>
                     </form>
                 )}
             </div>
-            <AllAppliances addAppliancesDiv={addAppliancesDiv}/>
+            <AllAppliances addAppliancesDiv={addAppliancesDiv} companies={companies} />
         </>
 
     );

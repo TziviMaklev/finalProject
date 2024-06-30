@@ -27,8 +27,9 @@
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    margin-left: 16vw;
-    margin-top: -4vh;
+    /* margin-left: 16vw; */
+    z-index: 100;
+    margin-top: 12vh;
   }
   
   .message {

@@ -3,7 +3,6 @@ const router = express.Router();
 const services = require('../Services/cars');
 const fs = require('fs');
 const path = require('path');
-
 const multer = require('multer');
 const upload = multer();
 // async function uploadCarImage(file, idUser, id = null) {
@@ -99,7 +98,6 @@ async function uploadCarImage(file, idUser, id = null) {
       newId = await services.getNextCarId(); // Function to get the next car ID
     }
     const newFileName = `car${newId}.png`;
-
     // בדוק אם IMAGES_BASE_PATH מוגדר
     if (!process.env.IMAGES_BASE_PATH) {
       throw new Error('Missing environment variable IMAGES_BASE_PATH');
@@ -138,7 +136,7 @@ async function uploadCarImage(file, idUser, id = null) {
 router.get('/', (req, res) => {
   services.getAll('getAllCars', [])
     .then((results) => {
-      console.log(`All cars is retrieved:`, results);
+      // console.log(`All cars is retrieved:`, results);
       res.status(200).json(results);
     })
     .catch((err) => {
@@ -172,9 +170,10 @@ router.put('/:carId', (req, res) => {
     carId: carId,
     carDetails: req.body
   };
-
-  services.update('updateCar', details)
+  console.log("details updated", details);
+  services.put('updateCar', details)
     .then((result) => {
+      console.log(result);
       console.log(`car with ID ${carId} updated successfully`);
       res.status(200).send(result);
     })
@@ -186,7 +185,6 @@ router.put('/:carId', (req, res) => {
 
 // **POST /:** Creates a new car
 router.post('/', upload.single("image"), async (req, res) => {
-
   const imageNavigte = await uploadCarImage(req.file, req.body.user_id);
   const details = {
     carDetails: req.body,
@@ -215,7 +213,7 @@ router.delete('/:carId', (req, res) => {
   console.log("detailsControlers" , details);
   services.delete_('deleteCar', details)
     .then((result) => {
-      console.log(`car with ID ${carId} deleted successfully`);
+      console.log(`car with ID ${carId} deleted successfully` , result);
       res.status(200).send(result);
     })
     .catch((error) => {

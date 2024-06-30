@@ -72,12 +72,18 @@ CREATE TABLE IF NOT EXISTS  businesses(
 );
 `;
 
+const companies =
+`       CREATE TABLE IF NOT EXISTS companies (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        company VARCHAR(255) NOT NULL
+    );`
 const tables = {
     cars,
     furniture,
     appliances,
     animals,
-    businesses
+    businesses,
+    companies
 };
 
 module.exports = tables;

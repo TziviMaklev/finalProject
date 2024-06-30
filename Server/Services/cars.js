@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const dal = require('../Repositories/dal/crud_functions');
-
 const fs = require('fs');
 const path = require('path');
 const { lookupService } = require('dns/promises');
+
 async function convertUrlToImageFile(url) {
     const imagePath = path.join(__dirname, 'IMAGES', url);
     if (fs.existsSync(imagePath)) {
@@ -21,7 +21,7 @@ const getNextCarId = async () => {
 
 const getAll = ((type, details) => {
     return dal.getAll(type, [])
-        .then(async(results) => {
+        .then(async (results) => {
             const enrichedResults = results[0].map(async (result) => {
                 // console.log(result.imageFilePath);
                 const imagePath = path.resolve(__dirname, result.imageFilePath);
@@ -53,23 +53,19 @@ const get = ((type, details) => {
 });
 
 const put = ((type, details) => {
-    const detailsInArr = [details.animalId, ...details.animalDetails];
-
-    dal.put(type, detailsInArr)
+    const detailsInArr = Object.values(details.carDetails);
+    detailsInArr.push(details.carId)
+    return dal.update(type, detailsInArr)
         .then((results) => {
-            dal.get("getCar", detailsInArr[0])
-                .then((results) => {
-                    return results
-                })
-                .catch((err) => {
-                    return err;
-                });
-
+            return dal.get("getCar", details.carId)
+        })
+        .then((results) => {
+            console.log("results" , results);
+            return results
         })
         .catch((err) => {
             return err;
         });
-
 
 });
 
@@ -92,10 +88,19 @@ const post = ((type, details) => {
 
 const delete_ = ((type, details) => {
     const detailsInArr = [details.carId];
-    console.log("servicrsDetail" ,detailsInArr );
     return dal.delete_(type, detailsInArr)
-        .then((results) => {
-            return results
+        .then(() => {
+            return dal.getAll("getAllCars", [])
+        })
+        .then(async (results) => {
+            const enrichedResults = results[0].map(async (result) => {
+                const imagePath = path.resolve(__dirname, result.imageFilePath);
+                const imageData = await fs.promises.readFile(imagePath);
+                const imageBase64 = Buffer.from(imageData).toString('base64');
+                return { ...result, imageData: imageBase64 };
+            });
+            const finalResults = await Promise.all(enrichedResults);
+            return finalResults;
         })
         .catch((err) => {
             return err;

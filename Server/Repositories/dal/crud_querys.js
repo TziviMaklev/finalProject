@@ -69,6 +69,16 @@ function getAllQuery(type) {
             SELECT cars.*
             FROM cars
             `;
+        case "getAllCarCompanies":
+            return sql = `
+            SELECT companies.*
+            FROM companies
+            `;
+        case "getAllApplianceCompanies":
+            return sql = `
+            SELECT applianceCompanies.*
+            FROM applianceCompanies
+            `;
         case "getAllFurniture":
             return sql = `
             SELECT furniture.*
@@ -173,7 +183,8 @@ function getQuery(type) {
             `;
         case "getNextCarId":
             return sql = `
-             SELECT LAST_INSERT_ID() +  1
+             SELECT MAX(id) AS max_id
+             FROM cars
             `;
         case "getNextFurnitureId":
             return sql = `
@@ -195,6 +206,8 @@ function getQuery(type) {
             SELECT MAX(businesses.id) +1
             FROM businesses
             `;
+
+
         default:
             return;
     }
@@ -221,8 +234,9 @@ function updateQuery(type) {
         case "updateCar":
             return sql = `
             UPDATE cars 
-            SET cars.product_details = ?,cars.cost = ?, cars.km = ?, cars.statuse = ? ,
-            cars.year_of_production =  ?, cars.several_years_in_use=?, cars.company =? , cars.product_type =? ,cars.imageFilePath = ? 
+            SET cars.user_id = ? , cars.product_details = ? , cars.cost = ?, cars.km = ?, cars.statuse = ? ,
+            cars. year_of_production = ? ,
+            cars.several_years_in_use=?  , cars.company = ? ,  cars.product_type = ?  , cars.imageFilePat = ?
             WHERE cars.id = ?`;
         case "updateFurniture":
             return sql = `

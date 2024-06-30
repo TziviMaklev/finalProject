@@ -122,9 +122,9 @@ router.delete('/:applianceId', (req, res) => {
   const details = {
     applianceId: parseInt(applianceId)
   };
-
   services.delete_('deleteAppliance', details)
     .then((result) => {
+      console.log(`Appliance with ID ${applianceId} deleted successfully` , result);
       res.status(200).send(result);
     })
     .catch((error) => {
