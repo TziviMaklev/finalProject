@@ -164,11 +164,13 @@ router.get('/:carId', (req, res) => {
 });
 
 // **PUT /:carId:** Updates a car's details
-router.put('/:carId', (req, res) => {
+router.put('/:carId',upload.single("image") , async(req, res) => {
   const carId = req.params.carId;
+  const imageNavigte = await uploadCarImage(req.file, req.body.user_id ,parseInt(carId));
   const details = {
-    carId: carId,
-    carDetails: req.body
+    carId: parseInt(carId) ,
+    carDetails: req.body,
+    imageNavigte: imageNavigte
   };
   console.log("details updated", details);
   services.put('updateCar', details)

@@ -23,14 +23,12 @@ const getAll = ((type, details) => {
     return dal.getAll(type, [])
         .then(async (results) => {
             const enrichedResults = results[0].map(async (result) => {
-                // console.log(result.imageFilePath);
                 const imagePath = path.resolve(__dirname, result.imageFilePath);
                 const imageData = await fs.promises.readFile(imagePath);
                 const imageBase64 = Buffer.from(imageData).toString('base64');
                 return { ...result, imageData: imageBase64 }; // הוספת תמונה כ-base64
             });
 
-            // console.log("results", enrichedResults);
             const finalResults = await Promise.all(enrichedResults);
             return finalResults;
         })
@@ -54,7 +52,9 @@ const get = ((type, details) => {
 
 const put = ((type, details) => {
     const detailsInArr = Object.values(details.carDetails);
-    detailsInArr.push(details.carId)
+    detailsInArr.push(details.imageNavigte,details.carId);
+    detailsInArr[0] = parseInt(detailsInArr[0]);
+    console.log("detailsInArr" , detailsInArr);
     return dal.update(type, detailsInArr)
         .then((results) => {
             return dal.get("getCar", details.carId)

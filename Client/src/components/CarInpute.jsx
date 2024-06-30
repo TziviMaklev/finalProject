@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 
 
-function CarInpute({ state, companies, id, setShowDiv  , carDetails}) {
+function CarInpute({ state, companies, id, setShowDiv, car }) {
     const [currentUser, setCurrentUser] = useState('');
     useEffect(() => {
         if (JSON.parse(sessionStorage.getItem('currentUser')) != undefined) {
@@ -10,7 +10,6 @@ function CarInpute({ state, companies, id, setShowDiv  , carDetails}) {
         }
     }, []);
 
-    console.log("Animals");
     const [cost, setCost] = useState('');
     const [km, setKm] = useState('');
     const [statuse, setStatuse] = useState('');
@@ -21,7 +20,6 @@ function CarInpute({ state, companies, id, setShowDiv  , carDetails}) {
     const [selectedImage, setSelectedImage] = useState(null);
 
     function req(e) {
-        console.log(currentUser);
         switch (state) {
             case "add":
                 addCar()
@@ -68,38 +66,22 @@ function CarInpute({ state, companies, id, setShowDiv  , carDetails}) {
         console.log("aadCar added");
     }
     async function updateCar(id, e) {
-        console.log(carDetails);
-        e.preventDefault()
-        // const fileData = new FormData();
-        // fileData.append('image', selectedImage);
-        // fileData.append('user_id', `${currentUser.user_id}`);
-        // fileData.append('productDetails', productDetails);
-        // fileData.append('cost', cost);
-        // fileData.append('km', km);
-        // fileData.append('statuse', statuse);
-        // fileData.append('yearOfProduction', yearOfProduction);
-        // fileData.append('severalYearsInUse', severalYearsInUse);
-        // fileData.append('company', company);
-        const  car = {
-            product_details : productDetails===""  ? carDetails.product_details :productDetails ,
-            cost: cost,
-            km: km,
-            statuse: statuse,
-            year_of_production : carDetails.year_of_production ,
-            severalYearsInUse: severalYearsInUse  ==="" ? carDetails.several_years_in_use : severalYearsInUse,
-            company : company==="" ? carDetails.company : company,
-            product_type : carDetails.product_type ,
-            imageFilePath : carDetails.imageFilePath 
-        }
+        const fileData = new FormData();
+        fileData.append('image', selectedImage);
+        fileData.append('user_id', car.user_id);
+        fileData.append('productDetails', productDetails === "" ? car.product_details : productDetails);
+        fileData.append('cost', cost === "" ? car.cost : cost);
+        fileData.append('km', km === "" ? car.km : km);
+        fileData.append('statuse', statuse === "" ? car.statuse : statuse);
+        fileData.append('yearOfProduction', car.year_of_production);
+        fileData.append('severalYearsInUse', severalYearsInUse === "" ? car.several_years_in_use : severalYearsInUse);
+        fileData.append('company', car.company);
+        fileData.append('product_type', car.product_type);
 
-        console.log(car);
         try {
             const response = await fetch(`http://localhost:3300/api/cars/${id}`, {
                 method: 'PUT',
-                body: JSON.stringify(car),
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8',
-                },
+                body: fileData,
             });
             if (!response.ok) {
                 const errorResponse = await response.json();
@@ -176,7 +158,7 @@ function CarInpute({ state, companies, id, setShowDiv  , carDetails}) {
                 value={productDetails}
                 onChange={(e) => setProductDetails(e.target.value)}
             />
-            {state != "update" && <input id="file-upload" type="file" accept="image/jpeg, image/png, image/gif" onChange={handleFileChange} />}
+            <input id="file-upload" type="file" accept="image/jpeg, image/png, image/gif" onChange={handleFileChange} />
             <button className="submit-car-btn" type='submit'>Submit Car</button>
         </form>
 
