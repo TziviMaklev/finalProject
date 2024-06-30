@@ -30,9 +30,9 @@ function Nav() {
       <span className="username-placeholder">hi {currentUser.name} </span>
       <button onClick={() => setShowMessage(!showMessage)} >🗨️️</button>
       <div className='items'>
-        <NavLink className='link item businesses' exact to="/businesses">עסקים למכירה</NavLink>
-        <NavLink className='link item appliances animal' exact to="/animal">חיות</NavLink>
-        <NavLink className='link item furniture' exact to="/furniture">רהיטים</NavLink>
+        {/* <NavLink className='link item businesses' exact to="/businesses">עסקים למכירה</NavLink> */}
+        {/* <NavLink className='link item appliances animal' exact to="/animal">חיות</NavLink> */}
+        {/* <NavLink className='link item furniture' exact to="/furniture">רהיטים</NavLink> */}
         <NavLink className='link item appliances' exact to="/appliances">מוצרי חשמל</NavLink>
         <NavLink className='link item cars' exact to="/cars">מכוניות</NavLink>
       </div>

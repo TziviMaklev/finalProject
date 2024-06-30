@@ -232,12 +232,19 @@ function updateQuery(type) {
             SET user_info.allowed = ?
             WHERE user_info.user_id = ?`;
         case "updateCar":
-            return sql = `
-            UPDATE cars 
-            SET cars.user_id = ? , cars.product_details = ? , cars.cost = ?, cars.km = ?, cars.statuse = ? ,
-            cars. year_of_production = ? ,
-            cars.several_years_in_use=?  , cars.company = ? ,  cars.product_type = ?  , cars.imageFilePat = ?
-            WHERE cars.id = ?`;
+            return sql =`UPDATE cars
+            SET 
+              user_id = ?,
+              product_details = ?,
+              cost = ?,
+              km = ?,
+              statuse = ?,
+              year_of_production = ?,
+              several_years_in_use = ?,
+              company = ?,
+              product_type = ?, 
+              imageFilePath = ?
+              WHERE id = ?`   ;  
         case "updateFurniture":
             return sql = `
             UPDATE furniture 

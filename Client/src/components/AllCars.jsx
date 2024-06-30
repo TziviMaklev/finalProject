@@ -36,7 +36,7 @@ function AllCars(props) {
       <Sort  arr={carArr}  setArr={setSortArr} companies={props.companies} status={'car'}></Sort>
       <div className="car-list">
         {sortArr.map((car) => (
-          <Car key={car.id} car={car}  setCarArr={setCarArr}  setSortArr={setSortArr} companies={props.companies} carDetails={car}/>
+          <Car key={car.id} car={car}  setCarArr={setCarArr}  setSortArr={setSortArr} companies={props.companies} />
         ))}
       </div>
     </>
