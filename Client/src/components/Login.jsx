@@ -49,10 +49,10 @@ function Login() {
 
     return (
         <>
-        <div className='background'>
+        <div>
             {/* <Nav className="nav" /> */}
-            <div className="signup-container">
-                <div className="signup-form">
+            <div className="login-container">
+                <div className="login-form">
                     <h1 id="titleLogin">To Login⬇</h1>
 
                     <div className="input-group">
@@ -65,11 +65,11 @@ function Login() {
                         <input type="password" id="password" class="input-field" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
                     </div>
 
-                    <button className="submit-btn" onClick={handleLogIn}>Login</button>
+                    <button className="submit-btn-login" onClick={handleLogIn}>Login</button>
 
                     <p id="loginError" className="error">{loginError}</p>
 
-                    <NavLink to="/sighUp">Don't have an account? Sign Up here</NavLink>
+                    <NavLink to="/signUp">Don't have an account? Sign Up here</NavLink>
                 </div>
             </div>
             </div>

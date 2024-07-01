@@ -9,34 +9,32 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-image: url('C:\Users\PC\.Full Stack\finalProject\Client\src\images\backgroundImage.png');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    width: 100%;
+   
   
 }
 
 /* Container for the entire login form */
-.signup-container {
+.login-container {
     width: 100%;
-    max-width: 500px;
-    /* Adjust width as needed */
-    background-color: #fff;
-    /* White background for the form */
+    margin-left: 50%;
+    max-width: 30vw; /* Adjust width as needed */
+    min-width:30vw;
+    background-color: #fcfcfc; /* White background for the form */
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for depth */
+    border: solid 1px black;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     padding: 2rem;
-}
+    position: absolute;
+    margin-top: 100px;
+  }
 
 /* Styles for the login form itself */
-.signup-form {
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-}
+  }
 
 /* Styles for the title */
 #titleLogin {
@@ -96,10 +94,11 @@ body {
 }
 
 /* Styles for the submit button */
-.submit-btn {
+.submit-btn-login{
     background-color: #FFC517;
     /* Green color for the button */
     color: white;
+    font-weight: bold;
     /* White text for the button */
     padding: 1rem 2rem;
     /* Add some padding to the button */
@@ -113,9 +112,11 @@ body {
     /* Smooth hover effect */
 }
 
-.submit-btn:hover {
-    background-color: #3e8e41;
-    /* Darker green on hover */
+.submit-btn-login:hover {
+    background-color: #ebe6d8; /* Darker green on hover */
+    border:solid 3px #FFC517;
+    color: #FFC517;
+    font-weight: bold;
 }
 
 /* Styles for the login link */

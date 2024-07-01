@@ -154,7 +154,6 @@ function SighUp() {
               onChange={(e) => setCity(e.target.value)}
             />
             <p class="error" id="cityError"></p>  </div>
-
           <p class="error">{error}</p>  <button class="submit-btn" type="submit" >  Sign Up
           </button>
           <NavLink to="/login">Already have an account? Login here</NavLink>

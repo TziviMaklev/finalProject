@@ -9,17 +9,24 @@ body {
     justify-content: center;
     min-height: 100vh;
   }
-  
+  label{
+    font-size: 15px;
+  }
   /* Container for the entire signup form */
   .signup-container {
     width: 100%;
-    margin-left: 35vw;
-    max-width: 30vw; /* Adjust width as needed */
+    height: 500px;
+    margin-left: 50%;
+    max-width: 25vw; /* Adjust width as needed */
+    min-width:30vw;
     background-color: #fcfcfc; /* White background for the form */
     border-radius: 5px;
     border: solid 1px black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 2rem;
+    padding: 3rem;
+    padding-top: 0.5rem;
+    position: absolute;
+    margin-top: 30px;
   }
   
   /* Styles for the signup form itself */
@@ -27,7 +34,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
   }
   
   /* Styles for the title */
@@ -46,7 +52,7 @@ body {
   /* Styles for the labels */
   .input-group label {
     display: block;
-    margin-bottom: 0.5rem; /* Add some space below the label */
+    /* margin-bottom: 0.5rem; Add some space below the label */
     font-weight: bold; /* Make labels bolder */
     color: #333; /* Darker text color for labels */
   }
@@ -77,6 +83,7 @@ body {
     border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer; /* Make it clear that it's a button */
     transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
+    margin-top: -30px
   }
   
   .submit-btn:hover {
