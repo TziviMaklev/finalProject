@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import '../style/sort.css'
+import '../../style/sort.css'
 
 function Sort(props) {
     console.log(props.status);

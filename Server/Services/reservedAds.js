@@ -2,14 +2,41 @@ const express = require('express');
 const router = express.Router();
 const dal = require('../Repositories/dal/crud_functions');
 
+const fs = require('fs');
+const path = require('path');
 
 const getAll  =((type, details) => {
     const detailsInArr = Object.values(details);
-    detailsInArr.push(details.userId);
+    console.log(type, detailsInArr);
     console.log(detailsInArr);
-    return dal.getAll(type, detailsInArr)
-        .then((results) => {
-            return results
+    let results1 ,results2;
+ 
+    return  dal.getAll(type[0], detailsInArr)
+        .then(async(results) => {
+            console.log("results1", results);
+            const enrichedResults = results[0].map(async (result) => {
+                const imagePath = path.resolve(__dirname, result.imageFilePath);
+                const imageData = await fs.promises.readFile(imagePath);
+                const imageBase64 = Buffer.from(imageData).toString('base64');
+                return { ...result, imageData: imageBase64 }; // הוספת תמונה כ-base64
+            });
+            const finalResults = await Promise.all(enrichedResults);
+            results1 = finalResults;
+            return  dal.getAll(type[1], detailsInArr)
+        })
+        .then(async(results) => {
+            console.log("results1", results);
+            const enrichedResults = results[0].map(async (result) => {
+                const imagePath = path.resolve(__dirname, result.imageFilePath);
+                const imageData = await fs.promises.readFile(imagePath);
+                const imageBase64 = Buffer.from(imageData).toString('base64');
+                return { ...result, imageData: imageBase64 }; // הוספת תמונה כ-base64
+            });
+            const finalResults = await Promise.all(enrichedResults);
+            results2 = finalResults;
+            // results2= results;
+            console.log("results2" ,results);
+            return [[results1[0]], [results2[0]]];
         })
         .catch((err) => {
             return err;

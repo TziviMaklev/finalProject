@@ -1,0 +1,11 @@
+.allReservedAdsList{
+    position: absolute;
+    margin-top: 20vh;
+    background-color: rgb(249, 246, 246);
+    z-index: 10000;
+    margin-left: 10vw;
+    color: black;
+}
+.company{
+    color: azure;
+}

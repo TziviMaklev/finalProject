@@ -120,10 +120,12 @@ router.post('/', upload.single("image"), async(req, res) => {
 });
 
 // DELETE appliance
-router.delete('/:applianceId', (req, res) => {
+router.delete('/:applianceId/:userID', (req, res) => {
   const applianceId = req.params.applianceId;
+  const userID = req.params.userID;
   const details = {
-    applianceId: parseInt(applianceId)
+    applianceId: parseInt(applianceId),
+    user_id: parseInt(userID)
   };
   services.delete_('deleteAppliance', details)
     .then((result) => {

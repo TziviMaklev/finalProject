@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import watchap from "../images/whatsapp-icon.webp"
+import watchap from "../../images/whatsapp-icon.webp"
 import AppliancesInpute from './AppliancesInpute';
 
 
@@ -66,7 +66,6 @@ function Appliance(props) {
     }
 
   }
-  console.log(currentUser.user_id, appliance.user_id, currentUser.user_id == appliance.user_id, appliance.id);
 
   async function deletAppliance(userId) {
     try {
@@ -102,32 +101,10 @@ function Appliance(props) {
     document.body.removeChild(link);
     window.URL.revokeObjectURL(url);
   }
-  // function openImage() {
-  //   try {
-  //     // Validate appliance.imageData format
-  //     if (!/^data:image\/png;base64,.*/.test(appliance.imageData)) {
-  //       throw new Error("Invalid data URL format for image. Expected data:image/png;base64,[Base64 encoded image data]");
-  //     }
-
-  //     // Open the new tab
-  //     const newTab = window.open('', '_blank');
-
-  //     // Check if the tab is successfully opened (security measure)
-  //     if (!newTab) {
-  //       throw new Error("Failed to open new tab. Pop-up blockers might be enabled.");
-  //     }
-
-  //     // Set the new tab's location to the data URL
-  //     newTab.location.href = appliance.imageData;
-  //   } catch (error) {
-  //     console.error("Error opening image:", error.message);
-  //     // Optionally display an error message to the user
-  //     alert("There was an error opening the image. Please try again later.");
-  //   }
-  // }
-  async function deletAppliance(userId) {
+  
+  async function deletAppliance(applianceID) {
     try {
-      const response = await fetch(`http://localhost:3300/api/appliances/${userId}`, {
+      const response = await fetch(`http://localhost:3300/api/appliances/${applianceID}/${currentUser.user_id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -147,7 +124,31 @@ function Appliance(props) {
     } catch (e) {
       console.log(e);
     }
+    
+  }
+  async function saveAd(userId , carId,  type) {
+    const detail = { "userId": userId, "carId": carId , "type" : type }
+    try{
+      const response = await fetch(`http://localhost:3300/api/user/reservedAds`, {
+        method: 'POST',
+        body: JSON.stringify(detail),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      });
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error || 'Network response was not ok');
+      }
+      const data = await response.json();
+      console.log(data);
+      
 
+    }catch(error){
+      console.log(error);
+    }
+
+    
   }
   return (
     <div>
@@ -176,7 +177,9 @@ function Appliance(props) {
         {
           (currentUser.user_id == appliance.user_id || currentUser.manger == true) &&
           <button onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
+          
         {(currentUser.user_id == appliance.user_id || currentUser.manger == true) && < button onClick={() => deletAppliance(appliance.id)}>🚮</button>}
+        {currentUser.user_id != "" && <button type='submit' onClick={() => saveAd(currentUser.user_id ,appliance.id , appliance.product_type)}>❤️</button>}
         {updateDiv && <AppliancesInpute companies={props.companies}  state={"update"} id={appliance.id} setShowDiv ={setUpdateDiv} appliance={appliance} />}
         <hr className="appliance-divider" />
         {

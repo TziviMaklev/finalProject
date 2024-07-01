@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import watchap from "../images/whatsapp-icon.webp"
+import watchap from "../../images/whatsapp-icon.webp"
 import CarInpute from './CarInpute';
 
 function Car(props) {
@@ -62,9 +62,10 @@ function Car(props) {
     catch (e) { console.log(e); }
   }
 
-  async function deletCar(userId) {
+  async function deletCar(carId) {
+    console.log(currentUser.user_id);
     try {
-      const response = await fetch(`http://localhost:3300/api/cars/${userId}`, {
+      const response = await fetch(`http://localhost:3300/api/cars/${carId}/${currentUser.user_id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
@@ -115,7 +116,7 @@ function Car(props) {
   async function saveAd(userId , carId,  type) {
     const detail = { "userId": userId, "carId": carId , "type" : type }
     try{
-      const response = await fetch(`http://localhost:3300/api/user/:${userId}/reservedAds`, {
+      const response = await fetch(`http://localhost:3300/api/user/reservedAds`, {
         method: 'POST',
         body: JSON.stringify(detail),
         headers: {
@@ -128,6 +129,7 @@ function Car(props) {
       }
       const data = await response.json();
       console.log(data);
+
 
     }catch(error){
       console.log(error);
@@ -157,9 +159,9 @@ function Car(props) {
         <button onClick={()=>conecctUse(car.user_id, currentUser , message)}>send</button>
         </>
         }
-        {(currentUser.user_id == car.user_id || currentUser.manger == true) && < button onClick={() => deletCar(car.id)}>🚮</button>}
-        {currentUser.user_id == car.user_id && <button type='submit' onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
-        {currentUser.user_id != "" && <button type='submit' onClick={() => saveAd(currentUser.user_id ,car.id , car.product_type)}>❤️</button>}
+        {props.state !="reservedAds" &&(currentUser.user_id == car.user_id || currentUser.manger == true) && < button onClick={() => deletCar(car.id)}>🚮</button>}
+        {props.state !="reservedAds" && currentUser.user_id == car.user_id && <button type='submit' onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
+        {props.state !="reservedAds" && currentUser.user_id != "" && <button type='submit' onClick={() => saveAd(currentUser.user_id ,car.id , car.product_type)}>❤️</button>}
         {  updateDiv && <CarInpute companies={props.companies} state={"update"} id={car.id} setShowDiv ={setUpdateDiv} car={car}/>}
         <hr className="car-divider" />
         {showSailerDaetails && <div>

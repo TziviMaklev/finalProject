@@ -102,24 +102,19 @@ function getAllQuery(type) {
             FROM businesses
             WHERE businesses.user_id = ?
             `;
-        case "getAllAds":
+        case "getAllCarAds":
             return sql = `
-            SELECT 
-            ra.user_id,
-            c.id AS car_id,
-            a.name AS appliance_name
-            FROM reserved_ads ra
-            JOIN cars c ON ra.product_id = c.id
-            WHERE ra.user_id = ?
-            UNION
-            SELECT 
-            ra.user_id,
-            a.*
-            FROM reserved_ads ra
-            JOIN appliancies a ON ra.product_id = a.id
-            WHERE ra.user_id = ?
+		select * from reserved_ads ra
+		left join cars c on c.id = ra.product_id and c.product_type = 'car'
+		where ra.user_id= ? and ra.product_type = 'car'
             `;
+            case "getAllApplianceAds":
+                return sql = 
+           `select * from reserved_ads ra
+            left join appliances a on a.id = ra.product_id and a.product_type = 'appliance'
+            where ra.user_id= ? and ra.product_type = 'appliance'`
         case "getAllMessages":
+            
             return sql = `
             SELECT *
             FROM user_messages

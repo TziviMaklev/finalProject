@@ -1,6 +1,6 @@
 // import React from 'react';
 import React, { useState, useEffect } from 'react';
-import Sort from './Sort';
+import Sort from '../tools/Sort';
 import Appliance from './Appliance';
 
 function AllAppliances(props) {
@@ -45,7 +45,7 @@ function AllAppliances(props) {
       <Sort arr={appliancesArr} setArr={setSortArr} status={'appliance'} companies={props.companies}></Sort>
       <div className='appliance-list'>
         {sortArr.map((appliance) => (
-          <Appliance key={appliance.id} appliance={appliance} setAppliancesArr={setAppliancesArr} setSortArr={setSortArr} companies={props.companies}>
+          <Appliance  state={""} key={appliance.id} appliance={appliance} setAppliancesArr={setAppliancesArr} setSortArr={setSortArr} companies={props.companies}>
           </Appliance>
         ))}
       </div>

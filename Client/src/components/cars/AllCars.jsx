@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../style/allCars.css'
+import '../../style/allCars.css'
 import Car from './Car';
-import Sort from './Sort';
+import Sort from '../tools/Sort';
 
 function AllCars(props) {
   const [carArr, setCarArr] = useState([]);
@@ -36,7 +36,7 @@ function AllCars(props) {
       <Sort  arr={carArr}  setArr={setSortArr} companies={props.companies} status={'car'}></Sort>
       <div className="car-list">
         {sortArr.map((car) => (
-          <Car key={car.id} car={car}  setCarArr={setCarArr}  setSortArr={setSortArr} companies={props.companies} />
+          <Car state={""} key={car.id} car={car}  setCarArr={setCarArr}  setSortArr={setSortArr} companies={props.companies} />
         ))}
       </div>
     </>

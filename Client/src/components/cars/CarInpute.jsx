@@ -145,7 +145,8 @@ function CarInpute({ state, companies, id, setShowDiv, car }) {
                 onChange={(e) => setSeveralYearsInUse(e.target.value)}
                 pattern="[0-9]+" // מותיר רק מספרים (כולל 0)
             />
-            {state != "update" && <select className='selectCompany' id="company" value={company} onChange={(e) => setCompany(e.target.value)}>
+            {state != "update" && 
+            <select className='selectCompany' id="company" value={company} onChange={(e) => setCompany(e.target.value)}>
                 {companies.map((company) => (
                     <option key={company.id}>{company.company}</option>
                 ))}

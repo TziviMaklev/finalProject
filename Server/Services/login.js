@@ -7,14 +7,11 @@ function post(type, details) {
     const detailsInArr = Object.values(details);
     return dal.get("getUserPassword", detailsInArr)
         .then((results) => {
-            // console.log("results1", results[0][0].user_id);
-              
-            // console.log("use" , use);
             return dal.get("getUserInfo", [results[0][0].user_id]);
         })
         .then((user) => 
             {
-                console.log('user3'  , user);
+                console.log('user3' , user);
                 return user[0][0]
             })
         .catch((error) => {

@@ -1,10 +1,10 @@
 import React from 'react';
-import Nav from './Nav';
+import Nav from '../Nav';
 import AllCars from './AllCars';
 import { useState, useEffect } from 'react';
-import '../style/product.css'
+// import '../style/product.css'
+import "../../style/product.css"
 import CarInpute from './CarInpute';
-
 function Cars() {
   const [currentUser, setCurrentUser] = useState('');
   useEffect(() => {

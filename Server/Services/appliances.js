@@ -93,10 +93,11 @@ const post = ((type, details) => {
 
 
 const delete_ = ((type, details) => {
-    const detailsInArr = [details.applianceId];
+    const detailsInArr = [details.user_id ,details.applianceId  , "appliance"];
     console.log(detailsInArr);
-    return dal.delete_(type, detailsInArr)
+    return dal.delete_(type, detailsInArr[1])
         .then(() => {
+            dal.delete_("deleteReservedAds" ,detailsInArr)
             return dal.getAll("getAllAppliances", [])
         })
         .then(async (results) => {

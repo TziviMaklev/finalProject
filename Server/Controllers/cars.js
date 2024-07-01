@@ -207,10 +207,12 @@ router.post('/', upload.single("image"), async (req, res) => {
 });
 
 // **DELETE /:carId:** Deletes a car by ID
-router.delete('/:carId', (req, res) => {
+router.delete('/:carId/:userId', (req, res) => {
+  const userId = req.params.userId;
   const carId = req.params.carId;
   const details = {
-    carId: parseInt(carId)
+    carId: parseInt(carId), 
+    user_id: parseInt(userId)
   };
   console.log("detailsControlers" , details);
   services.delete_('deleteCar', details)

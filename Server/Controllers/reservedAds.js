@@ -8,7 +8,7 @@ router.get('/:id', (req, res) => {
     const details = {
         userId: parseInt(userId)
     }
-    services.getAll('getAllAds', details)
+    services.getAll(['getAllCarAds' ,'getAllApplianceAds' ], details)
         .then((results) => {
             console.log(`all ads retrieved:`, results);
             res.status(200).json(results);
