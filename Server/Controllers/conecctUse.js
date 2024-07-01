@@ -16,11 +16,8 @@ router.get('/:userId', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-
-  
     services.post(["getUserInfo" , "addMessage" ], req.body)
       .then((result) => {
-        
         console.log("new  Message  created successfully" , result);
         res.status(200).send(result)
       })
