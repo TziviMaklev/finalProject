@@ -45,7 +45,7 @@ function AllAppliances(props) {
       <Sort arr={appliancesArr} setArr={setSortArr} status={'appliance'} companies={props.companies}></Sort>
       <div className='appliance-list'>
         {sortArr.map((appliance) => (
-          <Appliance key={appliance.id} appliance={appliance} setAppliancesArr={setAppliancesArr} setSortArr={setSortArr}>
+          <Appliance key={appliance.id} appliance={appliance} setAppliancesArr={setAppliancesArr} setSortArr={setSortArr} companies={props.companies}>
           </Appliance>
         ))}
       </div>

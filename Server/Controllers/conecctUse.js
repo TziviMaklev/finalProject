@@ -27,4 +27,22 @@ router.post('/', (req, res) => {
       })
   });
 
+
+  router.delete('/:messageId', (req, res) => {
+    const messageId = req.params.messageId;
+    const details = {
+      messageId: parseInt(messageId)
+    };
+    console.log("deletMassage" , details);
+    services.delete_('deletMassage', details)
+      .then((result) => {
+        console.log(`message with ID ${messageId} deleted successfully` , result);
+        res.status(200).send(result);
+      })
+      .catch((error) => {
+        console.error(`Error deleted car with id ${carId}:`, err);
+        res.status(500).send(error.message);
+      });
+  });
+
 module.exports = router;

@@ -20,11 +20,9 @@ router.get('/:id', (req, res) => {
 });
 
 router.get('/:messageId', (req, res) => {
-    const userId=req.params.id;
     const messageId = req.params.messageId;
     const details = {
-        messageId: messageId,
-        userId: userId
+        messageId: parseInt(messageId),
     }
     services.get('getMessage', details)
         .then((results) => {
@@ -56,12 +54,12 @@ router.post('/', (req, res) => {
 })
 
 
-router.delete('/:messageId', (req, res) => {
-    const userId=req.params.id;
+router.delete('/:userId/:messageId', (req, res) => {
     const messageId = req.params.messageId;
+    const userId = req.params.userId;
     const details = {
         messageId: messageId,
-        userId: userId
+        userId :userId
     }
     services.delete_('deleteUserMessage', details)
         .then((result) => {

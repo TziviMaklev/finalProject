@@ -35,7 +35,7 @@ server.use('/api/application/sendMail'  , conecctUseRouter )
 server.use('/api/user', usersRouter);
 server.use('/api/car/sendMail', conecctUseRouter);
 server.use('/api/user/Messages', userMessagesRouter);
-server.use('/api/user/:id/reservedAds', reservedAdsRouter);
+server.use('/api/user/reservedAds', reservedAdsRouter);
 server.use('/api/login', loginRouter);
 server.use('/api/signUp', signUpRouter);
 server.use('/api/companies', companiesRouter);

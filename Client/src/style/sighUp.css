@@ -23,10 +23,11 @@ body {
     border-radius: 5px;
     border: solid 1px black;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    padding: 3rem;
-    padding-top: 0.5rem;
+    padding: 1rem;
+    padding-top: 0;
+    padding-bottom: 3rem;
     position: absolute;
-    margin-top: 30px;
+    margin-top: 90px;
   }
   
   /* Styles for the signup form itself */

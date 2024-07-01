@@ -1,11 +1,13 @@
 import React from 'react'
-import Login from './Login'
+import Nav from './Nav';
+
 import { Outlet } from 'react-router-dom';
 import '../style/EnteryPageStyle.css'
 import '../style/login.css'
 const EnteryPage = () => {
   return (
     <div className='enteryPage-background'>
+     <Nav/>
       <Outlet />
     </div>
   )

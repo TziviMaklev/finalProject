@@ -57,8 +57,28 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease; /* אפקט מעבר רך */
+  margin-right: 5vw;
 }
-
+.logout{
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px; /* ריווח פנימי מוגדל */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: -10vw;
+}
+.login{
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 20px; /* ריווח פנימי מוגדל */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: -15vw;
+}
 .sighUp:hover {
   background-color: #0056b3; /* צבע רקע בעת ריחוף */
 }

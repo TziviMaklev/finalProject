@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const services= require('../Services/reservedAds');
 //ADD
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     const userId=req.params.id;
     console.log(`userId ${userId}`);
     const details = {
-        userId: userId
+        userId: parseInt(userId)
     }
     services.getAll('getAllAds', details)
         .then((results) => {
@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
         adsDetails: req.body,
         userId: userId
     }
-    services.create("addAds", details)
+    services.post("addAds", details)
         .then((result) => {
             console.log("new ads created successfully");
             res.status(200).send(result)

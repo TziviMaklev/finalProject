@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import watchap from "../images/whatsapp-icon.webp"
+import AppliancesInpute from './AppliancesInpute';
 
 
 function Appliance(props) {
@@ -7,15 +8,18 @@ function Appliance(props) {
   const [currentUser, setCurrentUser] = useState('');
   const [showSailerDaetails, setShowSailerDaetails] = useState(false);
   const [sailerDaetails, setSailerDaetails] = useState({});
+  const [updateDiv, setUpdateDiv] = useState(false);
+  const [showMessageDiv , setShowMessageDiv] = useState(false);
+  const [message , setMessage] = useState("");
   useEffect(() => {
     if (JSON.parse(sessionStorage.getItem('currentUser')) != undefined) {
       setCurrentUser(JSON.parse(sessionStorage.getItem('currentUser')));
     }
   }, []);
   console.log("Businesses");
-  async function conecctUse(useOfTheProductId, currentUser) {
+  async function conecctUse(useOfTheProductId, currentUser , message) {
     console.log(useOfTheProductId);
-    const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser }
+    const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser  , message :message}
     try {
       const response = await fetch(`http://localhost:3300/api/application/sendMail`, {
         method: 'POST',
@@ -30,6 +34,9 @@ function Appliance(props) {
       }
       const data = await response.json();
       console.log(data[0]);
+      setShowMessageDiv(!showMessageDiv);
+      setMessage("")
+
     }
     catch (e) { console.log(e); }
   }
@@ -130,11 +137,11 @@ function Appliance(props) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.error || 'Network response was not ok');
       }
-      else{
-      const data = await response.json();
-      console.log(data);
-      props.setAppliancesArr(data);
-      props.setSortArr(data);
+      else {
+        const data = await response.json();
+        console.log(data);
+        props.setAppliancesArr(data);
+        props.setSortArr(data);
       }
       console.log('appliance deleted');
     } catch (e) {
@@ -145,7 +152,7 @@ function Appliance(props) {
   return (
     <div>
       <div className="appliance-item">
-      <img src={`data:image/png;base64,${appliance.imageData}`} alt="appliance" className='image' onClick={openImage} />
+        <img src={`data:image/png;base64,${appliance.imageData}`} alt="appliance" className='image' onClick={openImage} />
         <div className="appliance-details">
           <p className='appliance-property'>cost:{appliance.cost}</p>
           <p className='appliance-property'>model:{appliance.model}</p>
@@ -157,23 +164,28 @@ function Appliance(props) {
           {/* <button onClick={() => conecctUse(appliance.user_id, currentUser)} className="contact-button"> ליצירת קשר</button> */}
         </div>
         <hr className="appliance-divider" />
-        <button>
-        <img onClick={() => conecctUse(appliance.user_id, currentUser)} src={watchap} width={30} height={30}></img>
+        <button onClick={() => setShowMessageDiv(!showMessageDiv)} disabled ={currentUser === ""}>
+          <img  src={watchap} width={30} height={30}></img>
         </button>
+        {showMessageDiv && 
+        <>
+        <input  value={message} onChange={(e)=> setMessage(e.target.value)}></input>
+        <button onClick={()=>conecctUse(appliance.user_id, currentUser , message)}>send</button>
+        </>
+        }
         {
           (currentUser.user_id == appliance.user_id || currentUser.manger == true) &&
-          <button onClick={() => deletAppliance(appliance.id)}>✏️</button>}
+          <button onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
         {(currentUser.user_id == appliance.user_id || currentUser.manger == true) && < button onClick={() => deletAppliance(appliance.id)}>🚮</button>}
-
-
+        {updateDiv && <AppliancesInpute companies={props.companies}  state={"update"} id={appliance.id} setShowDiv ={setUpdateDiv} appliance={appliance} />}
         <hr className="appliance-divider" />
         {
-        showSailerDaetails && <div>
-          <p>{sailerDaetails.name}</p>
-          <p>{sailerDaetails.email}</p>
-          <p>{sailerDaetails.phone}</p>
-        </div>
-      }
+          showSailerDaetails && <div>
+            <p>{sailerDaetails.name}</p>
+            <p>{sailerDaetails.email}</p>
+            <p>{sailerDaetails.phone}</p>
+          </div>
+        }
       </div>
 
     </div>

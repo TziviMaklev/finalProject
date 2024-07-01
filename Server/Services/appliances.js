@@ -14,8 +14,9 @@ async function convertUrlToImageFile(url) {
 }
 
 const getNextCarId = async () => {
-    const id = await dal.getNextId("getNextCarId");
-    return id + 1;
+    const id = await dal.getNextId("getNextApplianceId");
+    console.log(id);
+    return id ;
 }
 
 
@@ -52,9 +53,11 @@ const get = ((type, details) => {
 });
 
 const put = ((type, details) => {
-    const detailsInArr = [details.applianceId, ...details.applianceDetails];
-
-    dal.put(type, detailsInArr)
+    const detailsInArr = Object.values(details.applianceDetails);
+    detailsInArr.push(details.imageNavigte, details.applianceId);
+    detailsInArr[0] = parseInt(detailsInArr[0]);
+    console.log("befor updated arr" , detailsInArr);
+    return dal.update(type, detailsInArr)
         .then((results) => {
             dal.get("getAppliance", detailsInArr[0])
                 .then((results) => {
@@ -73,7 +76,6 @@ const put = ((type, details) => {
 });
 
 const post = ((type, details) => {
-    // console.log("details:" + details.applianceDetails);
     const detailsInArr = Object.values(details.applianceDetails);
     detailsInArr.push(details.imageNavigte)
     return dal.create(type, detailsInArr)

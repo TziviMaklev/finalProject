@@ -58,5 +58,26 @@ const post = ((type, details) => {
 
 
 })
+const delete_ = ((type, details) => {
+  console.log("servicesResultsAftet" , type, details);
+  const detailsInArr = [details.messageId];
+  return dal.delete_(type, detailsInArr)
+      .then(() => {
+          return dal.getAll("getAllMessages", [])
+      })
+      .then(async (results) => {
+          const enrichedResults = results[0].map(async (result) => {
+              const imagePath = path.resolve(__dirname, result.imageFilePath);
+              const imageData = await fs.promises.readFile(imagePath);
+              const imageBase64 = Buffer.from(imageData).toString('base64');
+              return { ...result, imageData: imageBase64 };
+          });
+          const finalResults = await Promise.all(enrichedResults);
+          return finalResults;
+      })
+      .catch((err) => {
+          return err;
+      });
+});
 
-module.exports = { get, post };
+module.exports = { get, post  , delete_};

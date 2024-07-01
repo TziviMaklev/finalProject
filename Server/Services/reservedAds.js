@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const dal = require('../Repositories/dal/crud_functions');
+
 
 const getAll  =((type, details) => {
-    const detailsInArr = [...details];
-    dal.getAll(type, detailsInArr)
+    const detailsInArr = Object.values(details);
+    detailsInArr.push(details.userId);
+    console.log(detailsInArr);
+    return dal.getAll(type, detailsInArr)
         .then((results) => {
             return results
         })
@@ -26,8 +30,8 @@ const get = ((type, details) => {
 
 
 const post = ((type, details) => {
-    const detailsInArr = [...details];
-    dal.post(type, detailsInArr)
+    const detailsInArr = Object.values(details.adsDetails);
+    return dal.create(type, detailsInArr)
         .then((results) => {
             const id = results
             dal.get("getAds", id)
@@ -57,4 +61,4 @@ const delete_ = ((type, details) => {
         });
 });
 
-module.exports = router;
+module.exports = {getAll , get  , post , delete_};

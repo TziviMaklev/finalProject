@@ -65,7 +65,7 @@ function AllUserMassege(props) {
     <div className="messages-container">
       {massagesArr.length > 0 ? (
         massagesArr.map((message) => (
-          <Massage key={message.id} message={message} conecctUse={conecctUse} currentUser={currentUser} showMessageDiv={showMessageDiv} setShowMessageDiv={setShowMessageDiv}  />
+          <Massage key={message.id} message={message} conecctUse={conecctUse} currentUser={currentUser} showMessageDiv={showMessageDiv} setShowMessageDiv={setShowMessageDiv} setMassagesArr={setMassagesArr} />
         ))
       ) : (
         <p>אין הודעות חדשות.</p>

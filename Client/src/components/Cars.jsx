@@ -52,7 +52,7 @@ function Cars() {
   return (< >
     <Nav />
     <div className="home-container">
-      {currentUser != "" && <button className="add-car-btn" onClick={() => setAddCarDiv(!addCarDiv)}> + add car</button>}
+      <button className="add-car-btn" onClick={(e) => {setAddCarDiv(!addCarDiv)}} disabled ={currentUser === ""}> + add car</button>
       {addCarDiv && (
         <CarInpute state={"add"} companies={companies} id={0} setShowDiv ={setAddCarDiv} carDetails={{}}/>
       )}

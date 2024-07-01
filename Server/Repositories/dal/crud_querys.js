@@ -40,7 +40,7 @@ function createQuery(type) {
             `;
         case "addAds":
             return sql = `
-            INSERT INTO project.ads(user_id ,product_id ,product_type )
+            INSERT INTO project.reserved_ads(user_id ,product_id ,product_type )
             VALUES (?, ?, ? )
             `;
         case "addMessage":
@@ -105,10 +105,19 @@ function getAllQuery(type) {
         case "getAllAds":
             return sql = `
             SELECT 
-            ra.user_id , p *
-            FROM reserved_ads ra JOIN um.product_type p
-            ON ra.product_id_id = p.id
-            WHERE ra.user_id = ? 
+            ra.user_id,
+            c.id AS car_id,
+            a.name AS appliance_name
+            FROM reserved_ads ra
+            JOIN cars c ON ra.product_id = c.id
+            WHERE ra.user_id = ?
+            UNION
+            SELECT 
+            ra.user_id,
+            a.*
+            FROM reserved_ads ra
+            JOIN appliancies a ON ra.product_id = a.id
+            WHERE ra.user_id = ?
             `;
         case "getAllMessages":
             return sql = `
@@ -193,7 +202,7 @@ function getQuery(type) {
             `;
         case "getNextApplianceId":
             return sql = `
-            SELECT MAX(appliances.id) +1
+            SELECT MAX(id) AS max_id
             FROM appliances
             `;
         case "getNextAnimalId":
@@ -232,7 +241,7 @@ function updateQuery(type) {
             SET user_info.allowed = ?
             WHERE user_info.user_id = ?`;
         case "updateCar":
-            return sql =`UPDATE cars
+            return sql = `UPDATE cars
             SET 
               user_id = ?,
               product_details = ?,
@@ -244,7 +253,7 @@ function updateQuery(type) {
               company = ?,
               product_type = ?, 
               imageFilePath = ?
-              WHERE id = ?`   ;  
+              WHERE id = ?`   ;
         case "updateFurniture":
             return sql = `
             UPDATE furniture 
@@ -253,10 +262,17 @@ function updateQuery(type) {
             WHERE furniture.id = ?`;
         case "updateAppliance":
             return sql = `
-            UPDATE appliances 
-            SET appliances.product_details = ?,appliances.cost = ?, appliances.product_type = ?, appliances.several_years_in_use = ?
-            ,appliances.statuse =? ,appliances.model =? , appliances.imageFilePath = ?
-            WHERE appliances.id = ?`;
+        UPDATE appliances
+        SET 
+        user_id = ?,
+        product_details = ?,
+        several_years_in_use = ?,
+        cost = ?,
+        statuse = ?,
+        model = ?,
+        product_type = ?,
+        imageFilePath = ?
+        WHERE id = ?`;
         case "updateAnimal":
             return sql = `
             UPDATE animals 
@@ -280,43 +296,50 @@ function deleteQuery(type) {
             DELETE 
             FROM  cars
             WHERE cars.id = ? 
-            `;
+            `
+            break;
         case "deleteFurniture":
             return sql = `
             DELETE 
             FROM  furniture
             WHERE furniture.id = ? OR furniture.dateAdded = ? 
             `;
+            break;
         case "deleteAppliance":
             return sql = `
             DELETE 
             FROM  appliances
             WHERE appliances.id = ?
             `;
+            break;
         case "deleteAnimal":
             return sql = `
             DELETE 
             FROM  animals
             WHERE animals.id = ? OR animals.dateAdded = ? 
             `;
+            break;
         case "deleteBusinesse":
             return sql = `
             DELETE    
             FROM  businesses
             WHERE businesses.id = ? OR businesses.dateAdded = ? 
            `;
+            break;
         case "deleteUserMessage":
-            return sql = `
-            DELETE    
-            FROM  user_messages
-            WHERE user_messages.messages_id = ? 
+            return sql =
+                `
+            DELETE FROM user_messages
+            WHERE messages_id = ?
             `;
+            break;
         case "deleteReservedAds":
             return sql = `
             DELETE    
             FROM  reserved_ads
             WHERE reserved_ads.user_id = ? AND reserved_ads.product_id = ? AND reserved_ads.product_type = ?
             `;
+            break;
         default:
             return;
     }

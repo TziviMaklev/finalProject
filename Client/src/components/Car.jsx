@@ -112,6 +112,29 @@ function Car(props) {
       alert("There was an error opening the image. Please try again later.");
     }
   }
+  async function saveAd(userId , carId,  type) {
+    const detail = { "userId": userId, "carId": carId , "type" : type }
+    try{
+      const response = await fetch(`http://localhost:3300/api/user/:${userId}/reservedAds`, {
+        method: 'POST',
+        body: JSON.stringify(detail),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      });
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        throw new Error(errorResponse.error || 'Network response was not ok');
+      }
+      const data = await response.json();
+      console.log(data);
+
+    }catch(error){
+      console.log(error);
+    }
+
+    
+  }
   console.log("Businesses");
   return (
     <div>
@@ -125,8 +148,8 @@ function Car(props) {
         </div>
         <hr className="car-divider" />
 
-        <button>
-        <img onClick={() =>setShowMessageDiv(!showMessageDiv)} src={watchap} width={30} height={30}></img>
+        <button onClick={() =>setShowMessageDiv(!showMessageDiv)}  disabled ={currentUser === ""}>
+        <img src={watchap} width={30} height={30}></img>
         </button>
         {showMessageDiv && 
         <>
@@ -136,6 +159,7 @@ function Car(props) {
         }
         {(currentUser.user_id == car.user_id || currentUser.manger == true) && < button onClick={() => deletCar(car.id)}>🚮</button>}
         {currentUser.user_id == car.user_id && <button type='submit' onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
+        {currentUser.user_id != "" && <button type='submit' onClick={() => saveAd(currentUser.user_id ,car.id , car.product_type)}>❤️</button>}
         {  updateDiv && <CarInpute companies={props.companies} state={"update"} id={car.id} setShowDiv ={setUpdateDiv} car={car}/>}
         <hr className="car-divider" />
         {showSailerDaetails && <div>

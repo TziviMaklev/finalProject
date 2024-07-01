@@ -62,7 +62,6 @@ function CarInpute({ state, companies, id, setShowDiv, car }) {
             console.log(err);
 
         }
-
         console.log("aadCar added");
     }
     async function updateCar(id, e) {
@@ -158,7 +157,8 @@ function CarInpute({ state, companies, id, setShowDiv, car }) {
                 value={productDetails}
                 onChange={(e) => setProductDetails(e.target.value)}
             />
-            <input id="file-upload" type="file" accept="image/jpeg, image/png, image/gif" onChange={handleFileChange} />
+            <input id="file-upload" type="file" accept="image/jpeg, image/png, image/gif" multiple  onChange={handleFileChange} name="images[]"/>
+            
             <button className="submit-car-btn" type='submit'>Submit Car</button>
         </form>
 

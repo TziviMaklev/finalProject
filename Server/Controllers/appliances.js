@@ -80,13 +80,16 @@ router.get('/:applianceId', (req, res) => {
 });
 
 // UPDATE appliance
-router.put('/:applianceId', (req, res) => {
+router.put('/:applianceId',upload.single("image") , async(req, res) => {
   const applianceId = req.params.applianceId;
+  const imageNavigte = await uploadApplianceImage(req.file, req.body.user_id ,parseInt(applianceId));
   const details = {
     applianceId: parseInt(applianceId),
+    applianceDetails: req.body,
+    imageNavigte: imageNavigte
   };
-
-  services.update('updateCar', details)
+  console.log(" detail to update ", details);
+  services.put('updateAppliance', details)
     .then((result) => {
       console.log(`Appliance with ID ${applianceId} updated successfully`);
       res.status(200).send(result);
