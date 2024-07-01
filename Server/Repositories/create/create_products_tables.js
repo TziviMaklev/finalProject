@@ -13,61 +13,61 @@ const pool = mysql.createPool({
 });
 
 
-// pool.getConnection((err, connection) => {
-//     if (err) console.log(err);
-//     connection.query(tables.cars, (err) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log('cars table created successfully');
-//             connection.release();
-//             pool.end();
-//         }
-//     });
-// });
+pool.getConnection((err, connection) => {
+    if (err) console.log(err);
+    connection.query(tables.cars, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('cars table created successfully');
+            connection.release();
+            pool.end();
+        }
+    });
+});
 
-// pool.getConnection((err, connection) => {
-//     if (err) console.log(err);
-//     connection.query(tables.furniture, (err) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log('furniture table created successfully');
-//             connection.release();
-//             pool.end();
-//         }
-//     });
-// });
+pool.getConnection((err, connection) => {
+    if (err) console.log(err);
+    connection.query(tables.furniture, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('furniture table created successfully');
+            connection.release();
+            pool.end();
+        }
+    });
+});
 
-// pool.getConnection((err, connection) => {
-//     if (err) console.log(err);
-//     connection.query(tables.appliances, (err) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log('appliances table created successfully');
-//             connection.release();
-//             pool.end();
-//         }
-//     });
-// });
+pool.getConnection((err, connection) => {
+    if (err) console.log(err);
+    connection.query(tables.appliances, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('appliances table created successfully');
+            connection.release();
+            pool.end();
+        }
+    });
+});
 
-// pool.getConnection((err, connection) => {
-//     if (err) console.log(err);
-//     connection.query(tables.animals, (err) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log('animals table created successfully');
-//             connection.release();
-//             pool.end();
-//         }
-//     });
-// });
+pool.getConnection((err, connection) => {
+    if (err) console.log(err);
+    connection.query(tables.animals, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('animals table created successfully');
+            connection.release();
+            pool.end();
+        }
+    });
+});
 
 
 pool.getConnection((err, connection) => {
@@ -83,16 +83,16 @@ pool.getConnection((err, connection) => {
         }
     });
 });
-// pool.getConnection((err, connection) => {
-//     if (err) console.log(err);
-//     connection.query(tables.businesses, (err) => {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             console.log('businesses table created successfully');
-//             connection.release();
-//             pool.end();
-//         }
-//     });
-// });
+pool.getConnection((err, connection) => {
+    if (err) console.log(err);
+    connection.query(tables.businesses, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log('businesses table created successfully');
+            connection.release();
+            pool.end();
+        }
+    });
+});
