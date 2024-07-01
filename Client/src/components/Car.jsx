@@ -8,6 +8,8 @@ function Car(props) {
   const [sailerDaetails, setSailerDaetails] = useState({});
   const [currentUser, setCurrentUser] = useState('');
   const [updateDiv, setUpdateDiv] =useState(false);
+  const [message , setMessage] = useState("");
+  const [showMessageDiv , setShowMessageDiv] = useState(false);
   useEffect(() => {
     if (JSON.parse(sessionStorage.getItem('currentUser')) != undefined) {
       setCurrentUser(JSON.parse(sessionStorage.getItem('currentUser')));
@@ -38,9 +40,9 @@ function Car(props) {
 
   }
 
-  async function conecctUse(useOfTheProductId, currentUser) {
+  async function conecctUse(useOfTheProductId, currentUser , message) {
     console.log(useOfTheProductId);
-    const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser }
+    const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser , message : message }
     try {
       const response = await fetch(`http://localhost:3300/api/car/sendMail`, {
         method: 'POST',
@@ -55,6 +57,7 @@ function Car(props) {
       }
       const data = await response.json();
       console.log(data[0]);
+      setShowMessageDiv(!showMessageDiv)
     }
     catch (e) { console.log(e); }
   }
@@ -121,9 +124,16 @@ function Car(props) {
           <button onClick={() => { showSellDetail(car.user_id) }}>ראה פרטי מוכר</button>
         </div>
         <hr className="car-divider" />
+
         <button>
-        <img onClick={() => conecctUse(car.user_id, currentUser)} src={watchap} width={30} height={30}></img>
+        <img onClick={() =>setShowMessageDiv(!showMessageDiv)} src={watchap} width={30} height={30}></img>
         </button>
+        {showMessageDiv && 
+        <>
+        <input  value={message} onChange={(e)=> setMessage(e.target.value)}></input>
+        <button onClick={()=>conecctUse(car.user_id, currentUser , message)}>send</button>
+        </>
+        }
         {(currentUser.user_id == car.user_id || currentUser.manger == true) && < button onClick={() => deletCar(car.id)}>🚮</button>}
         {currentUser.user_id == car.user_id && <button type='submit' onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
         {  updateDiv && <CarInpute companies={props.companies} state={"update"} id={car.id} setShowDiv ={setUpdateDiv} car={car}/>}
