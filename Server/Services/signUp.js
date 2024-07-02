@@ -161,7 +161,7 @@ function post(type, details) {
 const get = ((type, details) => {
   const detailsInArr = Object.values(details);
   let password =   generateRandomPassword()
-  sendEmail(detailsInArr[0] , 'your password',`ellow  ${detailsInArr[0]} \n your password is :${password}`)
+  sendEmail(detailsInArr[0] , 'your password',`hellow  ${detailsInArr[0]} \n your password is :${password}`)
   return dal.create('trySignUp' , [detailsInArr[0] , password])
       .then((results) => {
           console.log("getResults try signUp", results);
