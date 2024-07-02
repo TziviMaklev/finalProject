@@ -1,8 +1,6 @@
 import React from 'react';
-import Nav from '../Nav';
 import AllCars from './AllCars';
 import { useState, useEffect } from 'react';
-// import '../style/product.css'
 import "../../style/product.css"
 import CarInpute from './CarInpute';
 function Cars() {
@@ -50,7 +48,6 @@ function Cars() {
   console.log(currentUser != "");
 
   return (< >
-    <Nav />
     <div className="home-container">
       <button className="add-car-btn" onClick={(e) => {setAddCarDiv(!addCarDiv)}} disabled ={currentUser === ""}> + add car</button>
       {addCarDiv && (

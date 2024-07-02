@@ -1,5 +1,4 @@
 import React from 'react';
-import Nav from '../Nav';
 import { useState, useEffect } from 'react';
 import AppliancesInpute from './AppliancesInpute';
 import AllAppliances from './AllAppliances';
@@ -47,7 +46,6 @@ function Appliances() {
 
     return (
         <>
-            <Nav />
             <div className="home-container">
                 <button className="add-car-btn" onClick={() => setAppliancesDiv(!addAppliancesDiv)} disabled ={currentUser === ""}>
                     + Add Appliance

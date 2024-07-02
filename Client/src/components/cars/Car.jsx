@@ -1,15 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import watchap from "../../images/whatsapp-icon.webp"
 import CarInpute from './CarInpute';
+import mail from '../../images/gmail.png'
+import delete_ from '../../images/delete.png'
+import update from '../../images/update.png'
+import heart from '../../images/heart.png'
+import shekel from '../../images/shekel.png'
+import send from '../../images/send.png'
+
+
+
+
+
 
 function Car(props) {
   const car = props.car;
   const [showSailerDaetails, setShowSailerDaetails] = useState(false);
   const [sailerDaetails, setSailerDaetails] = useState({});
   const [currentUser, setCurrentUser] = useState('');
-  const [updateDiv, setUpdateDiv] =useState(false);
-  const [message , setMessage] = useState("");
-  const [showMessageDiv , setShowMessageDiv] = useState(false);
+  const [updateDiv, setUpdateDiv] = useState(false);
+  const [message, setMessage] = useState("");
+  const [showMessageDiv, setShowMessageDiv] = useState(false);
   useEffect(() => {
     if (JSON.parse(sessionStorage.getItem('currentUser')) != undefined) {
       setCurrentUser(JSON.parse(sessionStorage.getItem('currentUser')));
@@ -40,9 +51,9 @@ function Car(props) {
 
   }
 
-  async function conecctUse(useOfTheProductId, currentUser , message) {
+  async function conecctUse(useOfTheProductId, currentUser, message) {
     console.log(useOfTheProductId);
-    const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser , message : message }
+    const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser, message: message }
     try {
       const response = await fetch(`http://localhost:3300/api/car/sendMail`, {
         method: 'POST',
@@ -113,9 +124,9 @@ function Car(props) {
       alert("There was an error opening the image. Please try again later.");
     }
   }
-  async function saveAd(userId , carId,  type) {
-    const detail = { "userId": userId, "carId": carId , "type" : type }
-    try{
+  async function saveAd(userId, carId, type) {
+    const detail = { "userId": userId, "carId": carId, "type": type }
+    try {
       const response = await fetch(`http://localhost:3300/api/user/reservedAds`, {
         method: 'POST',
         body: JSON.stringify(detail),
@@ -131,45 +142,52 @@ function Car(props) {
       console.log(data);
 
 
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
 
-    
+
   }
+  const formattedNumber = parseInt(car.cost).toLocaleString('en-US'); // Format to US locale
+
   console.log("Businesses");
   return (
     <div>
-      <div className="car-item">
-      <img src={`data:image/png;base64,${car.imageData}`} alt="car" className='image' onClick={openImage} />
-        <div className="car-details">
-          <p className="car-property">Cost: {car.cost}</p>
-          <p className="car-property">KM: {car.km}</p>
-          <p className="car-property">Status: {car.statuse}</p>
-          <button onClick={() => { showSellDetail(car.user_id) }}>ראה פרטי מוכר</button>
-        </div>
-        <hr className="car-divider" />
+      <div className="car-item" >
+        <img src={`data:image/png;base64,${car.imageData}`} alt="car" className='image' onClick={openImage} />
+        {props.state != "reservedAds" && currentUser.user_id !== "" && <button className='hert' type='submit' onClick={() => saveAd(currentUser.user_id, car.id, car.product_type)}>
+          <img src={heart} width={15} height={15}></img> </button>}
+        <p className="car-property company">{car.company}</p>
+        <p className="car-property km">{car.km}  km - yad 2</p>
+        <p className="car-property sereval_years_in_use">was {car.several_years_in_use} years in use</p>
+        <p className="car-property year_of_production">The car was manufactured in {car.year_of_production}</p>
+        <p className="car-property cost">{formattedNumber}<img src={shekel} width={15} height={15}></img></p>
+        <div className='actionProduct'>
+          <button className='buttonAction' onClick={() => setShowMessageDiv(!showMessageDiv)} disabled={currentUser === ""}>
+            <img src={mail} width={15} height={15}></img>
+          </button>
+          {props.state != "reservedAds" && (currentUser.user_id == car.user_id || currentUser.manger == true) && < button className='buttonAction' onClick={() => deletCar(car.id)}>
+            <img src={delete_} width={15} height={15}></img>
+          </button>}
 
-        <button onClick={() =>setShowMessageDiv(!showMessageDiv)}  disabled ={currentUser === ""}>
-        <img src={watchap} width={30} height={30}></img>
-        </button>
-        {showMessageDiv && 
-        <>
-        <input  value={message} onChange={(e)=> setMessage(e.target.value)}></input>
-        <button onClick={()=>conecctUse(car.user_id, currentUser , message)}>send</button>
-        </>
-        }
-        {props.state !="reservedAds" &&(currentUser.user_id == car.user_id || currentUser.manger == true) && < button onClick={() => deletCar(car.id)}>🚮</button>}
-        {props.state !="reservedAds" && currentUser.user_id == car.user_id && <button type='submit' onClick={() => setUpdateDiv(!updateDiv)}>✏️</button>}
-        {props.state !="reservedAds" && currentUser.user_id != "" && <button type='submit' onClick={() => saveAd(currentUser.user_id ,car.id , car.product_type)}>❤️</button>}
-        {  updateDiv && <CarInpute companies={props.companies} state={"update"} id={car.id} setShowDiv ={setUpdateDiv} car={car}/>}
-        <hr className="car-divider" />
-        {showSailerDaetails && <div>
+          {props.state != "reservedAds" && currentUser.user_id == car.user_id && <button className='buttonAction' type='submit' onClick={() => setUpdateDiv(!updateDiv)}>
+            <img src={update} width={15} height={15}></img></button>}
+          <button  className='buttonAction' onClick={() => { showSellDetail(car.user_id) }}>
+            <img src={watchap} width={15} height={15}></img>
+          </button>
+        </div>
+        {showSailerDaetails && <div className='sailerDaetails'>
           <p>{sailerDaetails.name}</p>
           <p>{sailerDaetails.email}</p>
           <p>{sailerDaetails.phone}</p>
         </div>}
+        {updateDiv && <CarInpute className="update" companies={props.companies} state={"update"} id={car.id} setShowDiv={setUpdateDiv} car={car} />}
+        {showMessageDiv && <div className='sendEmail'><label>enter a message to the sailer</label><input className='sendEmailInput' value={message} onChange={(e) => setMessage(e.target.value)}></input>
+          <button className="sendEmailB" onClick={() => conecctUse(car.user_id, currentUser, message)}>
+            <img src={send} width={15} height={15}></img>
+          </button></div>}
       </div>
+
     </div >
 
   );

@@ -22,6 +22,7 @@ const getAll  =((type, details) => {
             });
             const finalResults = await Promise.all(enrichedResults);
             results1 = finalResults;
+            console.log("results1 car"  , results1);
             return  dal.getAll(type[1], detailsInArr)
         })
         .then(async(results) => {
@@ -35,8 +36,9 @@ const getAll  =((type, details) => {
             const finalResults = await Promise.all(enrichedResults);
             results2 = finalResults;
             // results2= results;
-            console.log("results2" ,results);
-            return [[results1[0]], [results2[0]]];
+            console.log("results appliances" ,results);
+            console.log(results1[0], results2[0]);
+            return [results1, results2];
         })
         .catch((err) => {
             return err;

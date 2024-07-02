@@ -5,6 +5,12 @@ function createQuery(type) {
         INSERT INTO project.passwords ( user_name ,password) 
         VALUES (?, ?);
         `;
+        case "trySignUp":
+            return sql = `
+            INSERT INTO project.trySignUpUsers ( email ,password_) 
+            VALUES (?, ?);
+            `;
+
         case "addUserInfo": return sql = `
             INSERT INTO project.user_info (user_id,name,email,city,phone , allowed ,  manger) 
             VALUES (?, ?, ?, ?, ?, ${true}  , ${false});
@@ -108,13 +114,14 @@ function getAllQuery(type) {
 		left join cars c on c.id = ra.product_id and c.product_type = 'car'
 		where ra.user_id= ? and ra.product_type = 'car'
             `;
-            case "getAllApplianceAds":
-                return sql = 
-           `select * from reserved_ads ra
+        case "getAllApplianceAds":
+            return sql =
+                `select * from reserved_ads ra
             left join appliances a on a.id = ra.product_id and a.product_type = 'appliance'
-            where ra.user_id= ? and ra.product_type = 'appliance'`
+            where ra.user_id= ? and ra.product_type = 'appliance'
+            `;
         case "getAllMessages":
-            
+
             return sql = `
             SELECT *
             FROM user_messages
@@ -132,6 +139,11 @@ function getQuery(type) {
             SELECT passwords.user_id
             FROM passwords
             WHERE passwords.user_name = ? AND passwords.password= ? `;
+        case "getUTryUserDetails":
+            return sql = `
+            SELECT trySignUpUsers.*
+            FROM trySignUpUsers
+            WHERE trySignUpUsers.email = ? AND trySignUpUsers.password_= ? `;
         case "getUserInfo":
             return sql = `
             SELECT user_info.*

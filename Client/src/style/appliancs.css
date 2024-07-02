@@ -4,7 +4,9 @@
     margin-bottom: 10px;
     display: flex;
     padding: 15px;
-    width: 60vw;
+    margin-left: -20vw;
+    width: 80vw;
+    /* width: 60vw; */
     background-color: #f5f5f5;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
@@ -17,7 +19,6 @@
   .appliance-property {
     margin-bottom: 5px;
     color: #333;
-    text-align: center;
   }
   
   .contact-button {
@@ -52,4 +53,11 @@
     align-items: center;
     padding: 20px;
     margin-left: 20vw;
+  }
+  .appliance-item:hover {
+    box-shadow: 0 2px 5px rgba(7, 124, 241, 0.2) inset,
+      0 4px 10px rgba(7, 124, 241, 0.1);
+    border-radius: 10px;
+    /* Adjust as needed */
+  
   }

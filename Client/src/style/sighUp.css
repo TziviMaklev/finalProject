@@ -84,7 +84,8 @@ body {
     border-radius: 5px; /* Rounded corners for the button */
     cursor: pointer; /* Make it clear that it's a button */
     transition: background-color 0.2s ease-in-out; /* Smooth hover effect */
-    margin-top: -30px
+    margin-top: -30px;
+    /* height: 6vh; */
   }
   
   .submit-btn:hover {
@@ -104,6 +105,42 @@ body {
   .signup-form a:hover {
     color: #0056b3; /* Darker blue on hover */
   }
+
+  .password-container {
+    position: absolute;
+    margin-top: 80vh;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    width: 200px; /* Adjust as needed */
+    margin: 20px auto;
+  }
+  
+  .password-container input {
+    width: 30px; /* Adjust as needed */
+    height: 30px;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 20px;
+    width: 20vw;
+  }
+  
+  .password-container input:focus {
+    outline: none;
+    
+    border: 2px solid #007bff; /* Highlight focused input */
+  }
+  .errorI{
+    /* margin-top: 40vh; */
+    color: #ff4d4d;
+
+  }
+  .password-container{
+    display: flex;
+     flex-direction: column;
+  }
+
+
   
   /* Responsiveness (media queries) */
   @media (max-width: 768px) {

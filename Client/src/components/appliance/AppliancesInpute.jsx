@@ -30,13 +30,13 @@ function AppliancesInpute({ state, companies, id, setShowDiv, appliance }) {
         }
     }
     async function addAppliances(e) {
-        e.preventDefault();
+        // e.preventDefault();
         const fileData = new FormData();
         fileData.append('image', selectedImage);
         fileData.append('user_id', `${currentUser.user_id}`);
         fileData.append('productDetails', productDetails);
-        fileData.append('severalYearsInUse', severalYearsInUse);
         fileData.append('cost', cost);
+        fileData.append('severalYearsInUse', severalYearsInUse);
         fileData.append('statuse', statuse);
         fileData.append('model', model);
         try {
@@ -65,8 +65,8 @@ function AppliancesInpute({ state, companies, id, setShowDiv, appliance }) {
         fileData.append('image', selectedImage);
         fileData.append('user_id', `${currentUser.user_id}`);
         fileData.append('productDetails', productDetails);
-        fileData.append('severalYearsInUse', severalYearsInUse);
         fileData.append('cost', cost);
+        fileData.append('severalYearsInUse', severalYearsInUse);
         fileData.append('statuse', statuse);
         fileData.append('model', appliance.model);
         fileData.append("product_type" ,  appliance.product_type);
@@ -96,10 +96,10 @@ function AppliancesInpute({ state, companies, id, setShowDiv, appliance }) {
         }
         setSelectedImage(file);
     };
-
+const add_car_form =`add-car-form ${state}A`
     return (
         <div>
-            <form className="add-car-form" onSubmit={e => { req(e) }}>
+            <form className={add_car_form} onSubmit={e => { req(e) }}>
                 <h2>{state} Appliance Details</h2>
                 {/* Appliance details input fields */}
                 <input
@@ -124,7 +124,6 @@ function AppliancesInpute({ state, companies, id, setShowDiv, appliance }) {
                     value={severalYearsInUse}
                     onChange={(e) => setSeveralYearsInUse(e.target.value)}
                     pattern="[0-9]+" // מותיר רק מספרים (כולל 0)
-
                 />
                 <input
                     type="text"

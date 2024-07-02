@@ -56,7 +56,7 @@ function AddManeger(props) {
 
     return (
         <div>
-            {showSighUp && <form class="signup-form" onSubmit={handleSighUp} className="add-manager-form"  >
+            <form class="signup-form" onSubmit={handleSighUp} className="add-manager-form"  >
                 <h1 id="titleSignUp">add manager</h1>
 
                 <div class="input-group">
@@ -151,7 +151,7 @@ function AddManeger(props) {
 
                 <p class="error">{error}</p>  <button class="submit-btn" type="submit" >  Sign Up
                 </button>
-            </form>}
+            </form>
         </div>
 
     );

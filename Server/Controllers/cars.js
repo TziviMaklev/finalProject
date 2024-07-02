@@ -92,6 +92,7 @@ const upload = multer();
 //   }
 // }
 async function uploadCarImage(file, idUser, id = null) {
+  console.log(file);
   try {
     let newId = id;
     if (newId === null) {
@@ -116,12 +117,9 @@ async function uploadCarImage(file, idUser, id = null) {
       console.error('Error creating upload directory:', err);
       throw err; // Re-throw the error for handling
     }
-
     const fileBuffer = file.buffer;
     const filePath = path.join(uploadDir, newFileName);
-
     await fs.promises.writeFile(filePath, fileBuffer);
-
     return `../images/${idUser}/car${newId}.png`;
   } catch (error) {
     console.error('Error uploading product image:', error);
@@ -164,11 +162,11 @@ router.get('/:carId', (req, res) => {
 });
 
 // **PUT /:carId:** Updates a car's details
-router.put('/:carId',upload.single("image") , async(req, res) => {
+router.put('/:carId', upload.single("image"), async (req, res) => {
   const carId = req.params.carId;
-  const imageNavigte = await uploadCarImage(req.file, req.body.user_id ,parseInt(carId));
+  const imageNavigte = await uploadCarImage(req.file, req.body.user_id, parseInt(carId));
   const details = {
-    carId: parseInt(carId) ,
+    carId: parseInt(carId),
     carDetails: req.body,
     imageNavigte: imageNavigte
   };
@@ -195,8 +193,8 @@ router.post('/', upload.single("image"), async (req, res) => {
   console.log("carDetails", details.carDetails);
   services.post("addCar", details)
     .then((result) => {
-      
-      console.log("new car created successfully" , result);          
+
+      console.log("new car created successfully", result);
 
       res.status(200).send(result)
     })
@@ -211,13 +209,13 @@ router.delete('/:carId/:userId', (req, res) => {
   const userId = req.params.userId;
   const carId = req.params.carId;
   const details = {
-    carId: parseInt(carId), 
+    carId: parseInt(carId),
     user_id: parseInt(userId)
   };
-  console.log("detailsControlers" , details);
+  console.log("detailsControlers", details);
   services.delete_('deleteCar', details)
     .then((result) => {
-      console.log(`car with ID ${carId} deleted successfully` , result);
+      console.log(`car with ID ${carId} deleted successfully`, result);
       res.status(200).send(result);
     })
     .catch((error) => {

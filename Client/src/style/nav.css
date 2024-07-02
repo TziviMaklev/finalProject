@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: #e2dfdf;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* צל רך משופר */
   padding: 20px; /* ריווח פנימי מוגדל */
   display: flex;
@@ -29,7 +29,9 @@
 .username-placeholder {
   font-size: 20px; /* גודל גופן מוגדל */
   font-weight: bold;
-  margin-right: 20px; /* מרווח מוגדל */
+  color: #6da8e2;
+  text-shadow: 1px 1px 1px #077cf1; /* Adjusted shadow parameters and color */
+  margin-left: -10vw;
 }
 
 .items {
@@ -41,16 +43,18 @@
   margin-right: 20px; /* מרווח מוגדל */
   text-decoration: none;
   color: #333;
+  font-weight: bold;
+
   font-size: 18px; /* גודל גופן מוגדל */
   transition: color 0.3s ease; /* אפקט מעבר רך */
 }
 
 .link:hover {
-  color: #007bff; /* צבע טקסט בעת ריחוף */
+  color: #FFC517; /* צבע טקסט בעת ריחוף */
 }
 
 .sighUp {
-  background-color: #007bff;
+  background-color: #FFC517;
   color: #fff;
   border: none;
   padding: 12px 20px; /* ריווח פנימי מוגדל */
@@ -60,7 +64,7 @@
   margin-right: 5vw;
 }
 .logout{
-  background-color: #007bff;
+  background-color:  #077cf1;
   color: #fff;
   border: none;
   padding: 12px 20px; /* ריווח פנימי מוגדל */
@@ -70,7 +74,7 @@
   margin-right: -10vw;
 }
 .login{
-  background-color: #007bff;
+  background-color:  #FFC517;
   color: #fff;
   border: none;
   padding: 12px 20px; /* ריווח פנימי מוגדל */
@@ -80,13 +84,13 @@
   margin-right: -15vw;
 }
 .sighUp:hover {
-  background-color: #0056b3; /* צבע רקע בעת ריחוף */
+  background-color: #FFC517; /* צבע רקע בעת ריחוף */
 }
 
 /* כפתור מנהל */
 
 .addManeger {
-  background-color: #007bff;
+  background-color:  #077cf1;
 
   color: #fff;
   border: none;
@@ -124,12 +128,30 @@
 .add-manager-form {
   display: flex;
   flex-direction: column;
-margin-left: 30vw;
+  z-index: 1000000;
   position: absolute;
   width: 30vw; /* Adjusted width */
   background-color: #fff; /* White background for form */
   padding: 20px;
-  margin-top: 100px;
+  padding: 0 2vw 0 2vw ;
+  margin-top: -31vh;
   border-radius: 10px; /* Rounded corners */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
+
+
+.massageB{
+  background: none;
+  font-size: 30px;
+  margin-right: -10vw;
+}
+.massageB :hover{
+  border: none;
+}
+.reserved_ads{
+  background: none;
+  font-size: 30px;
+}
+/* Keep your existing general styles */
+
+/* Navigation bar styles */

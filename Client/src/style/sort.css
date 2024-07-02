@@ -1,9 +1,30 @@
 .sortMenu {
     display: flex;
     margin-top: -10vh;
-    margin-left: 10vw;
+    margin-left: 40vw;
 }
 
 .sortType {
-    margin-left: 10vw;
+    margin-left: 5vw;
+    background: none;
+    border-radius: 5px;
+    height: 30px;
+    
+}
+.sortType:hover{
+    border: solid 1px  #b069ff
+    ;
+}
+.select{
+    height: 35px;
+    color:  #FFC517;
+
+}
+
+.costI{
+    color: #b069ff;
+}
+
+.kmI{
+    color: #077cf1;
 }

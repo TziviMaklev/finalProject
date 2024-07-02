@@ -20,42 +20,38 @@ function Sort(props) {
 
     function sortByAmount(cost) {
         console.log(cost);
-        if(cost === ""){
+        if (cost === "") {
             props.setArr(props.arr)
         }
-        else{
+        else {
             let sortArr = props.arr.filter(p => parseInt(p.cost) <= parseInt(cost));
             props.setArr(sortArr)
         }
- 
+
     }
     function sortByKm(km) {
-        if(km === ""){
+        if (km === "") {
             props.setArr(props.arr)
- 
+
         }
-        else{
+        else {
             let sortArr = props.arr.filter(p => parseInt(p.km) <= parseInt(km));
             props.setArr(sortArr)
         }
     }
-    const [amount, setAmount] = React.useState(0);
 
-    const handleChange = (event) => {
-        const newAmount = parseInt(event.target.value) || 0;
-        setAmount(newAmount);
-    };
+
     return (
         <div className='sortMenu' >
-            <input className='sortType' type="text" onChange={(e) => sortByAmount(e.target.value)} placeholder="הכנס סכום" />
-            <select className='sortType' id="company" value={company} onChange={(e) => sortByCompany(e.target.value)}>
+            <input className='sortType costI' type="number" onChange={(e) => sortByAmount(e.target.value)} placeholder="enter cost" /> 
+            <select className='sortType select' id="company" value={company} onChange={(e) => sortByCompany(e.target.value)}>
                 {props.companies.map((company) => (
                     <option key={company.id}>{company.company}</option>
                 ))}
             </select>
             {
                 props.status === 'car' &&
-                <input className='sortType' type="text" onChange={(e) => sortByKm(e.target.value)} placeholder="הכנס km" />
+                <input className='sortType kmI' type="number" onChange={(e) => sortByKm(e.target.value)} placeholder="enter km" />
             }
         </div>
 

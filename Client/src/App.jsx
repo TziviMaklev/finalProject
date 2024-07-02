@@ -3,14 +3,14 @@ import { BrowserRouter, Routes, Route, Link, Navigate ,  } from 'react-router-do
 import './App.css'
 import Login from './components/Login.jsx'
 import SignUp from './components/SighUp.jsx'
-import ReservedAds from './components/reservedAds/ReservedAds.jsx'
+// import AllReservedAds from './components/reservedAds/AllReservedAds.jsx'
 import HomePage from './components/HomePage.jsx'
-// import Animals from './components/Animals.jsx'
-// import Furniture from './components/Furniture.jsx'
+import Nav from './components/Nav.jsx'
+import AddManeger from './components/AddManger';
 import Cars from './components/cars/Cars.jsx'
-// import Businesses from './components/Businesses.jsx'
 import Appliances from './components/appliance/Appliances.jsx'
 import EnteryPage from './components/EnteryPage.jsx';
+import ReservedAdsList from './components/reservedAds/ReservedAdsList.jsx'
 
 
 
@@ -24,16 +24,15 @@ function App() {
           <Route path='login' element={<Login />} />
           <Route path='signUp' element={<SignUp />} />
         </Route>
-          <Route path='homePage/:id' element={<HomePage />}>
-          </Route>
-          {/* <Route path='login' element={<Login />} />
-          <Route path='signUp' element={<SignUp />} /> */}
-          <Route path='reservedAds' element={<ReservedAds />} />
-          {/* <Route path='animal' element={<Animals />} /> */}
-          {/* <Route path='furniture' element={<Furniture />} /> */}
-          <Route path='cars' element={<Cars />} />
-          {/* <Route path='businesses' element={<Businesses />} /> */}
-          <Route path='appliances' element={<Appliances />} />
+        <Route path='' element={<Nav />}>
+        <Route path='reservedAds/:id' element={<ReservedAdsList />} ></Route>
+        <Route path='appliances' element={<Appliances />} />
+        <Route path='maneger/add' element={<AddManeger />} />
+        <Route path='homePage/:id' element={<HomePage />}>
+        </Route>
+
+        <Route path='cars' element={<Cars />} ></Route>
+        </Route>
         </Routes>
       </BrowserRouter>
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-
 function CarInpute({ state, companies, id, setShowDiv, car }) {
     const [currentUser, setCurrentUser] = useState('');
     useEffect(() => {
@@ -102,9 +101,10 @@ function CarInpute({ state, companies, id, setShowDiv, car }) {
             return;
         }
         setSelectedImage(file);
-    };
+    }; 
+    let add_car_form = `add-car-form ${state}`
     return (
-        <form className="add-car-form" onSubmit={e => { req(e) }}>
+        <form className={add_car_form} onSubmit={e => { req(e) }}>
             <h2>{state} Car Details</h2>
             {/* Car details input fields */}
             <input
