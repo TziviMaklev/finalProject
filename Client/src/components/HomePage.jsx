@@ -1,5 +1,5 @@
 import Nav from './Nav';
-// import Cars from './Cars';
+import Cars from '../components/cars/Cars';
 
 // HomePage.jsx
 function HomePage() { // Receive layout prop
