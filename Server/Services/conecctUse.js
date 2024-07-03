@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const dal = require('../Repositories/dal/crud_functions');
+// import logo from 'C:\Users\The user\Desktop\finalProject\Server\images\logo.png'
 
 const nodemailer = require('nodemailer');
 
@@ -46,7 +47,7 @@ const post = ((type, details) => {
   return dal.get(type[0], detailsInArr[0])
     .then((results) => {
       console.log("servicesResults" , results[0][0].email );
-      sendEmail(results[0][0].email, "יצירת קשר", ` hi ${results[0 ][0].name} \n ${detailsInArr[2]} \n please connect whith  ${detailsInArr[1].email} or call ${detailsInArr[1].phone} \n yad 2 `)
+      sendEmail(results[0][0].email, "יצירת קשר", ` hi ${results[0 ][0].name} \n ${detailsInArr[2]} \n please connect whith  ${detailsInArr[1].email} or call ${detailsInArr[1].phone} \n yad 2  `)
       return dal.create(type[1], [detailsInArr[0] , detailsInArr[1].user_id , `hi ${results[0 ][0].name} ${detailsInArr[2]} please connect whith  ${detailsInArr[1].email} or call ${detailsInArr[1].phone}`])
     }).then((results) =>{
       console.log("servicesResultsAftet" ,results);

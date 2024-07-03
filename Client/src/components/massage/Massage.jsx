@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-
+import watchap from "../../images/whatsapp-icon.webp"
+import delete_ from '../../images/delete.png'
+import mail from '../../images/gmail.png'
+import send from '../../images/send.png'
 
 
 function Massage({ message, conecctUse, currentUser, showMessageDiv, setShowMessageDiv ,setMassagesArr}) {
   const [messageText, setMessageText] = useState("");
+  const [showMail, setShowMail] = useState(false);
   async function deletMessage(user_id , messageId) {
     console.log(currentUser);
     console.log(messageId);
@@ -35,15 +39,22 @@ function Massage({ message, conecctUse, currentUser, showMessageDiv, setShowMess
   return (
     <div key={message.messages_id} className="message">
       <p className="message-body">{message.body}</p>
-      <button onClick={() => setShowMessageDiv(!showMessageDiv)}>צור קשר</button>
-      {showMessageDiv &&
-        <>
-          <input value={messageText} onChange={(e) => setMessageText(e.target.value)}></input>
-          <button onClick={() => conecctUse(message.sender_id, currentUser, messageText)}>send</button>
-        </>
-      }
-     < button onClick={() => deletMessage(currentUser.user_id,message.messages_id)}>🚮</button>
+      <div className='actionMassage'>
+      <button  className='buttonAction' onClick={() => setShowMail(!showMail)}>
+      <img src={mail} width={15} height={15}></img>
+      </button>
 
+     < button  className='buttonAction' onClick={() => deletMessage(currentUser.user_id,message.messages_id)}>
+     <img src={delete_} width={15} height={15}></img>
+     </button>
+     {showMail &&
+        <div >
+          <input value={messageText} onChange={(e) => setMessageText(e.target.value)}></input>
+          <button  className='buttonAction' onClick={() => conecctUse(message.sender_id, currentUser, messageText)}>
+          <img src={send} width={15} height={15}></img></button>
+        </div>
+      }
+     </div>
     </div>
   );
 }

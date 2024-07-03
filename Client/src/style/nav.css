@@ -152,6 +152,10 @@
   background: none;
   font-size: 30px;
 }
+.actionMassage{
+  display: flex;
+  /* flex-direction: column; */
+}
 /* Keep your existing general styles */
 
 /* Navigation bar styles */

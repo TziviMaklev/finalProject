@@ -4,7 +4,6 @@ import AppliancesInpute from './AppliancesInpute';
 import AllAppliances from './AllAppliances';
 import '../../style/product.css'
 import '../../style/appliancs.css'
-
 function Appliances() {
     console.log("Appliances");
     const [companies, setCompanies] = useState([]);

@@ -24,6 +24,7 @@ function Appliance(props) {
   }, []);
   console.log("Businesses");
   async function conecctUse(useOfTheProductId, currentUser, message) {
+    setShowMessageDiv(!showMessageDiv)
     console.log(useOfTheProductId);
     const detail = { "useOfTheProductId": useOfTheProductId, "currentUser": currentUser, message: message }
     try {
@@ -192,7 +193,7 @@ function Appliance(props) {
           <p>{sailerDaetails.phone}</p>
         </div>}
         {showMessageDiv && <div className='sendEmail'><label>enter a message to the sailer</label><input className='sendEmailInput' value={message} onChange={(e) => setMessage(e.target.value)}></input>
-          <button className="sendEmailB" onClick={() => conecctUse(car.user_id, currentUser, message)}><img src={send} width={15} height={15}></img></button></div>}
+          <button className="sendEmailB" onClick={() => conecctUse(appliance.user_id, currentUser, message)}><img src={send} width={15} height={15}></img></button></div>}
       </div>
     </div>
 

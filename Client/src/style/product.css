@@ -71,7 +71,8 @@ body {
   background-color: #fff;
   /* White background for form */
   padding: 20px;
-  margin-top: 20px;
+  z-index: 100000;
+  margin-top: 15vh;
   border-radius: 10px;
   
   z-index: 2;
@@ -222,14 +223,14 @@ button {
 .sailerDaetails {
   background-color: #f5f5f5;
   position: absolute;
-  margin-left: 35vw;
-  margin-top: 30vh;
+  margin-left: 40vw;
+  /* margin-top: 10vh; */
   width: auto;
   padding: 0px    0px  0px 20px;
   width: 20vw;
   font-size: 15px;
-  box-shadow: 0 2px 5px rgba(7, 124, 241, 0.2) inset,
-    0 4px 10px rgba(7, 124, 241, 0.1);
+  /* box-shadow: 0 2px 5px rgba(7, 124, 241, 0.2) inset,
+    0 4px 10px rgba(7, 124, 241, 0.1); */
   border-radius: 10px;
 }
 .update{
@@ -283,6 +284,9 @@ button {
 }
 
 .updateA{
+
   margin-left: 20vw;
   height: 10vh;
+  z-index: 10000;
 }
+

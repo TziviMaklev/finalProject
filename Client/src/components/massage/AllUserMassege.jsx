@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import '../../style/allMassages.css'
-
 import Massage from './Massage';
 
 function AllUserMassege(props) {

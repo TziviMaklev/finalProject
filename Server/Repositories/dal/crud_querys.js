@@ -5,6 +5,12 @@ function createQuery(type) {
         INSERT INTO project.passwords ( user_name ,password) 
         VALUES (?, ?);
         `;
+        case "addProfile":
+            return sql = `
+            INSERT INTO project.profile (user_id , profile_)
+            VALUES (?, ?)
+            `;
+        case "addAds":
         case "trySignUp":
             return sql = `
             INSERT INTO project.trySignUpUsers ( email ,password_) 
@@ -139,6 +145,11 @@ function getQuery(type) {
             SELECT passwords.user_id
             FROM passwords
             WHERE passwords.user_name = ? AND passwords.password= ? `;
+        case 'getProfile':
+            return sql = `
+            SELECT profile.*
+            FROM profile
+            WHERE profile.user_id = ?`;
         case "getUTryUserDetails":
             return sql = `
             SELECT trySignUpUsers.*

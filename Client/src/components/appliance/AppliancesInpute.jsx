@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 
-
 function AppliancesInpute({ state, companies, id, setShowDiv, appliance }) {
     const [currentUser, setCurrentUser] = useState('');
     useEffect(() => {
@@ -98,7 +97,6 @@ function AppliancesInpute({ state, companies, id, setShowDiv, appliance }) {
     };
 const add_car_form =`add-car-form ${state}A`
     return (
-        <div>
             <form className={add_car_form} onSubmit={e => { req(e) }}>
                 <h2>{state} Appliance Details</h2>
                 {/* Appliance details input fields */}
@@ -140,8 +138,6 @@ const add_car_form =`add-car-form ${state}A`
                 <input id="file-upload" type="file" accept="image/jpeg, image/png, image/gif" onChange={handleFileChange} />
                 <button className="submit-car-btn" type='submit'>Submit Appliance</button>
             </form>
-        </div>
-
     );
 }
 

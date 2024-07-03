@@ -39,6 +39,12 @@
     background-color: #fff;
     border-radius: 5px;
   }
+  .messages-container :hover{
+    box-shadow: 0 2px 5px rgba(7, 124, 241, 0.2) inset,
+    0 4px 10px rgba(7, 124, 241, 0.1);
+  border-radius: 10px;
+  /* Adjust as needed */
+  }
   
   .message:last-child {
     margin-bottom: 0;
@@ -81,4 +87,6 @@
   .message.read {
     background-color: #fff;
   }
+
+  
   

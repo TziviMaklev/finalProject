@@ -12,9 +12,8 @@ import Appliances from './components/appliance/Appliances.jsx'
 import EnteryPage from './components/EnteryPage.jsx';
 import ReservedAdsList from './components/reservedAds/ReservedAdsList.jsx'
 
-
-
 function App() {
+
 
   return (
     <>
